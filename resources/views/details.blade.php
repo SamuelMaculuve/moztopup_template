@@ -23,7 +23,7 @@
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="{{ route('home') }}" class="logo">
-              <img src="{{ asset('build/assets/logo/megashop3-removebg-preview.png')}}" alt="" style="width: 85px;">
+              <img src="{{ asset('logo/megashop3-removebg-preview.png')}}" alt="" style="width: 85px;">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Search End ***** -->
@@ -37,7 +37,7 @@
                   <i class="fa fa-search"></i>
                 </form>
               </div></li>
-              <li><a href="profile.html">Inscreva-se <img src="{{ asset('build/assets/images/profile-header.jpg')}}" alt=""></a></li>
+              <li><a href="profile.html">Inscreva-se <img src="{{ asset('images/profile-header.jpg')}}" alt=""></a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
@@ -61,7 +61,7 @@
                 <div class="feature-banner header-text">
                   <div class="row">
                     <div class="col-lg-4">
-                      <img src="{{ asset('build/assets/images/feature-left.jpg')}}" alt="" style="border-radius: 23px;">
+                      <img src="{{ asset('images/feature-left.jpg')}}" alt="" style="border-radius: 23px;">
                       <h3 class="pt-4">Fortnite</h3>
                       <p>Recarregue League of Legends: Wild Rift Wild Cores em segundos! Basta digitar seu ID de usuário League of Legends: Wild Rift, selecionar o valor de Wild Cores que deseja adquirir, completar o pagamento, e a Wild Cores será adicionada imediatamente à sua conta League of Legends: Wild Rift.
 
@@ -134,7 +134,7 @@
                             <div class="row">
                               <div class="col-lg-6">
                                 <div class="item">
-                                  <img src="{{ asset('build/assets/images/mpesa.png')}}" alt="" class="templatemo-item">
+                                  <img src="{{ asset('images/mpesa.png')}}" alt="" class="templatemo-item">
                                   <h4>Mpesa</h4><span>Pague com mpesa</span>
                                   <ul>
                                     <li><i class="fa fa-star"></i> 500 MT
@@ -144,7 +144,7 @@
                               </div>
                               <div class="col-lg-6">
                                 <div class="item">
-                                  <img src="{{ asset('build/assets/images/emola.png')}}" alt="" class="templatemo-item">
+                                  <img src="{{ asset('images/emola.png')}}" alt="" class="templatemo-item">
                                   <h4>Emola</h4><span>Pague com emola</span>
                                   <ul>
                                     <li><i class="fa fa-money"></i> 900 MT
@@ -222,13 +222,13 @@
                         </div>
                       </div>
                       <div class="col-lg-4">
-                        <img src="{{ asset('build/assets/images/details-01.jpg')}}" alt="" style="border-radius: 23px; margin-bottom: 30px;">
+                        <img src="{{ asset('images/details-01.jpg')}}" alt="" style="border-radius: 23px; margin-bottom: 30px;">
                       </div>
                       <div class="col-lg-4">
-                        <img src="{{ asset('build/assets/images/details-02.jpg')}}" alt="" style="border-radius: 23px; margin-bottom: 30px;">
+                        <img src="{{ asset('images/details-02.jpg')}}" alt="" style="border-radius: 23px; margin-bottom: 30px;">
                       </div>
                       <div class="col-lg-4">
-                        <img src="{{ asset('build/assets/images/details-03.jpg')}}" alt="" style="border-radius: 23px; margin-bottom: 30px;">
+                        <img src="{{ asset('images/details-03.jpg')}}" alt="" style="border-radius: 23px; margin-bottom: 30px;">
                       </div>
                       <div class="col-lg-12">
                         <p>Cyborg Gaming is free HTML CSS website template provided by TemplateMo. This is Bootstrap v5.2.0 layout. You can make a <a href="https://paypal.me/templatemo" target="_blank">small contribution via PayPal</a> to info [at] templatemo.com and thank you for supporting. If you want to get the PSD source files, please contact us. Lorem ipsum dolor sit consectetur es dispic dipiscingei elit, sed doers eiusmod lisum hored tempor.</p>
@@ -247,6 +247,6 @@
       </div>
     </div>
 
-
+@include('client.layout.footer')
 
 @endsection

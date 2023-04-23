@@ -48,17 +48,18 @@ class GameController extends Controller
             $errors = $validation->errors();
             $message = '';
             //Check and get the first error of the field "title"
-        if ($errors->has('name')) {
-            $message .= $errors->first('name');
-        }
+            if ($errors->has('name')) {
+                $message .= $errors->first('name');
+            }
 
-        //Check and get the first error of the field "body"
-        if ($errors->has('image')) {
-            $message .= "\n".$errors->first('image');
-        }
+            //Check and get the first error of the field "body"
+            if ($errors->has('image')) {
+                $message .= "\n".$errors->first('image');
+            }
 
-            Toastr::error("$message", "Erro ao cadatrar dados");
-            return;
+
+            Toastr()->error("kdgnkdfjgnkd", "Erro ao cadatrar dados");
+            return back();
         }
 
         if ($request->hasFile('image')) {
@@ -73,8 +74,7 @@ class GameController extends Controller
 
             $img->stream(); // <-- Key point
 
-            //dd();
-            Storage::disk('local')->put("images/games/$game".'/'.$fileName, $img, 'public');
+            Storage::disk('local')->put("public/images/games/$game".'/'.$fileName, $img, 'public');
         }
 
         $game = $this->game;

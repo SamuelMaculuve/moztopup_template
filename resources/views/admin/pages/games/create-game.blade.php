@@ -23,7 +23,8 @@
             </header>
 
             <main class="py-6 bg-admin">
-            <form action="" method="post">
+            <form action="{{ route('new.game') }}" enctype="multipart/form-data" method="post">
+                @csrf
               <div class="container-fluid max-w-screen-md vstack gap-5">
                 <div>
                 <div>
@@ -41,7 +42,7 @@
                   <input type="file" name="image" accept="png/jpg/jpeg" class="form-control" required>
                 </div>
 
-                <button type="button" class="btn btn-sm mt-5 btn-primary">
+                <button type="submit" class="btn btn-sm mt-5 btn-primary">
                     <span>Salvar</span>
                   </button
                 {{-- <div class="row gx-4 gy-5">

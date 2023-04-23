@@ -23,16 +23,17 @@
             </header>
 
             <main class="py-6 bg-admin">
-            <form action="#" method="POST">
+            <form action="{{ route('new.recharge.type') }}" method="POST">
+                @csrf
               <div class="container-fluid max-w-screen-md vstack gap-5">
                 <div class="row gx-4">
                     <div class="col">
                       <div>
                         <label class="form-label">Selecione o Jogo</label>
-                        <select class="form-select">
-                          <option>Free Fire</option>
-                          <option>Apple</option>
-                          <option>Elrond</option>
+                        <select class="form-select" name="game_id">
+                          @foreach ($games as $game)
+                          <option value="{{ $game->id }}">{{ $game->name }}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -40,24 +41,24 @@
                 <div>
                 <div>
                   <label class="form-label">Titulo do Tipo de Recarga</label>
-                  <input type="text" class="form-control" placeholder="Codigo da recarga">
+                  <input type="text" name="title" class="form-control" placeholder="Titulo do tipo de recarga">
                   <span class="d-block mt-2 text-sm text-muted">O codigo deve ser unico.</span>
                 </div>
                 <div>
                     <label class="form-label">Breve descricao (Opcional)</label>
-                    <textarea class="form-control" placeholder="Project description ..." rows="2"></textarea>
+                    <textarea class="form-control" name="description" placeholder="Project description ..." rows="2"></textarea>
                 </div>
                 <hr class="my-0">
 
                 <div>
-                    <label class="form-label">Preco da Recarga</label>
-                    <input type="number" class="form-control" placeholder="Preco da recarga">
+                    <label class="form-label">Preco das Recargas</label>
+                    <input type="number" name="price" class="form-control" placeholder="Preco das recargas">
                 </div>
 
                 <hr class="my-2">
                 <div class="vstack gap-4">
                   <div class="d-flex gap-3">
-                    <input class="form-check-input flex-shrink-0 text-lg" type="radio" name="projecy-privacy" checked="checked">
+                    <input class="form-check-input flex-shrink-0 text-lg" type="radio" name="promotion" value="false" checked="checked">
                     <div class="pt-1 form-checked-content">
                       <h6 class="mb-1 lh-relaxed">Normal</h6>
                       <span class="d-block text-muted text-sm">
@@ -65,7 +66,7 @@
                     </div>
                   </div>
                   <div class="d-flex gap-3">
-                    <input class="form-check-input flex-shrink-0 text-lg" type="radio" name="projecy-privacy">
+                    <input class="form-check-input flex-shrink-0 text-lg" type="radio" value="true" name="promotion">
                     <div class="pt-1 form-checked-content">
                       <h6 class="mb-1 lh-relaxed">Promocao</h6>
                       <span class="d-block text-muted text-sm">
@@ -84,7 +85,7 @@
                         <span class="input-group-text pe-2">
                           <i class="bi bi-calendar"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Selecione a data de inicio" data-input>
+                        <input type="text" class="form-control" placeholder="Selecione a data de inicio" name="start_date" data-input>
                       </div>
                     </div>
                   </div>
@@ -95,7 +96,7 @@
                         <span class="input-group-text pe-2">
                           <i class="bi bi-calendar"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Selecione a data de termino" data-input>
+                        <input type="text" class="form-control" placeholder="Selecione a data de termino" name="end_date" data-input>
                       </div>
                     </div>
                   </div>

@@ -34,29 +34,31 @@
                             type="button" class="btn-close text-reset text-xs" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
+                    <form action="{{ route('new.recharge') }}" method="post">
+                        @csrf
                     <div class="offcanvas-body vstack gap-5">
                         <div>
                           <label class="form-label">Selecione o Jogo</label>
-                          <select class="form-select">
-                            <option>Free Fire</option>
-                            <option>Apple</option>
-                            <option>Elrond</option>
+                          <select class="form-select" name="game_id">
+                            @foreach ($games as $game)
+                                <option value="{{ $game->id }}">{{ $game->name }}</option>
+                            @endforeach
                           </select>
                         </div>
 
                         <div>
                           <label class="form-label">Selecione o Tipo de Recarga</label>
-                          <select class="form-select">
-                            <option>100 Diamantes</option>
-                            <option>200 Diamantes</option>
-                            <option>300 Diamantes</option>
+                          <select class="form-select" name="recharge_type_id">
+                            @foreach ($rechargeTypes as $rechargeType)
+                                <option value="{{ $rechargeType->id }}">{{ $rechargeType->title }}</option>
+                            @endforeach
                           </select>
                         </div>
 
-                        <div><label class="form-label">Codigo da Recarga</label> <input type="text" class="form-control"
+                        <div><label class="form-label">Codigo da Recarga</label> <input type="text" name="code" class="form-control"
                                 placeholder="Codigo da recarga"> </div>
 
-                        <div><label class="form-label">Breve descricao (Opcional)</label> <textarea class="form-control"
+                        <div><label class="form-label">Breve descricao (Opcional)</label> <textarea name="description" class="form-control"
                                 placeholder="descriicao da recarga ..." rows="2"></textarea> </div>
 
                       {{-- <div><label class="form-label">Capa</label>  <input type="file" class="form-control"
@@ -66,7 +68,8 @@
 
                     <div class="modal-footer py-2 bg-admin"><button type="button"
                             class="btn btn-sm btn-neutral mx-2" data-bs-dismiss="offcanvas">Fechar</button> <button
-                            type="button" class="btn btn-sm btn-primary mx-2">Salvar</button></div>
+                            type="submit" class="btn btn-sm btn-primary mx-2">Salvar</button></div>
+                    </form>
                 </div>
 
                 <div class="container-fluid">
@@ -79,44 +82,28 @@
                             <table class="table table-hover table-nowrap">
                                 <thead class="table-light bg-secondary">
                                     <tr>
-                                        <th scope="col">Nome</th>
+                                        <th scope="col">Nome do Jogo</th>
                                         <th scope="col">Data</th>
+                                        <th scope="col">Tipo de Recarga</th>
                                         <th scope="col">Estado</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><img alt="..." src="{{ asset('images/freefire.jpg') }}"
+                                    @foreach ($recharges as $recharge)
+
+                                        <tr>
+                                            <td><img alt="..." src="{{ asset('storage/images/games/'.$recharge->game->name.'/'.$recharge->game->image) }}"
                                                 class="avatar avatar-sm rounded-circle me-2"> <a
-                                                class="text-heading font-semibold" href="#"><span class=" text-dark">Free Fire</span></a></td>
-                                        <td>23-01-2022</td>
-                                        <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>Publicada</span></td>
+                                                class="text-heading font-semibold" href="#"><span class=" text-dark">{{ $recharge->game->name }}</span></a></td>
+                                                <td>{{ $recharge->created_at->format('d/m/Y') }}</td>
+                                                <td>{{ $recharge->rechargeType->title }}</td>
+                                                <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>Publicada</span></td>
 
-                                        <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><img alt="..." src="{{ asset('images/fifa.jfif') }}"
-                                                class="avatar avatar-sm rounded-circle me-2"> <a
-                                                class="text-heading font-semibold" href="#"><span class=" text-dark">Fifa 2023</span></a></td>
-                                        <td>23-01-2022</td>
-                                        <td><span class="badge badge-lg badge-dot"><i class="bg-warning"></i>Em progresso</span></td>
-
-                                        <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img alt="..." src="{{ asset('images/pubg2.jfif') }}"
-                                                class="avatar avatar-sm rounded-circle me-2"> <a
-                                                class="text-heading font-semibold" href="#"><span class=" text-dark">PubG</span></a>
-                                        </td>
-                                        <td>23-01-2022</td>
-                                        <td><span class="badge badge-lg badge-dot"><i class="bg-danger"></i>Vendida</span></td>
-
-
-                                        <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver detalhes</a></td>
-                                    </tr>
+                                            <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

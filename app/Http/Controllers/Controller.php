@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
+use App\Models\Recharge;
+use App\Models\RechargeType;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Crypt;
 
 class Controller extends BaseController
 {
@@ -15,12 +19,22 @@ class Controller extends BaseController
 
     function home()
     {
-        return view('home');
+        $games = Game::all();
+        return view('home', compact('games'));
     }
 
     function details()
     {
         return view('details');
+    }
+
+    function details2($id)
+    {
+        $id = Crypt::decrypt($id);
+        $game = Game::find($id);
+        $rechargeTypes = RechargeType::where('game_id', $id)->get();
+
+        return view('details2', compact('rechargeTypes', 'game'));
     }
 
     function pofile(Request $request) : View
@@ -53,6 +67,11 @@ class Controller extends BaseController
     function signup()
     {
         return view('client.signup');
+    }
+
+    function payment()
+    {
+        return view('payment');
     }
 
 }

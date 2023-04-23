@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RechargeController;
+use App\Http\Controllers\RechargeTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Controller::class, 'home'])->name('home');
 
 Route::get('/details', [Controller::class, 'details'])->name('details');
+
+Route::get('/payment', [Controller::class, 'payment'])->name('payment');
+
+Route::get('/details/{id}', [Controller::class, 'details2'])->name('details2');
 
 Route::get('/client/profile', [Controller::class, 'pofile'])->middleware(['auth', 'verified'])->name('pofilee');
 
@@ -43,6 +50,19 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::get('/game', [DashboardController::class, 'createGame'])->name('createGame')->middleware('check-permission:admin|viewer|editor|deletor|creator');
 
     Route::get('/games/list', [DashboardController::class, 'listGames'])->name('listGames')->middleware('check-permission:admin|viewer|editor|deletor|creator');
+
+    Route::get('/users/list', [DashboardController::class, 'users'])->name('users')->middleware('check-permission:admin|viewer|editor');
+
+    Route::prefix('games')->group(function () {
+        Route::post('/create', [GameController::class, 'store'])->name('new.game')->middleware('check-permission:admin|creator');
+    });
+
+    Route::prefix('recharges')->group(function () {
+        Route::post('/create/recharge/type', [RechargeTypeController::class, 'store'])->name('new.recharge.type')->middleware('check-permission:admin|creator');
+
+        Route::post('/create/recharge', [RechargeController::class, 'store'])->name('new.recharge')->middleware('check-permission:admin|creator');
+    });
+
 });
 
 

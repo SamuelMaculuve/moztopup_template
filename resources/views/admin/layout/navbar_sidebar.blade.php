@@ -1,4 +1,4 @@
-<nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg scrollbar" id="sidebar">
+<nav style="overflow-x: hidden;" class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg scrollbar" id="sidebar">
     <div class="container-fluid">
       <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,17 +31,23 @@
               <i class="bi bi-briefcase"></i> Recargas </a>
             <div class="collapse" id="sidebar-recargas">
               <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                  <a href="{{ route('listRecharge') }}" class="nav-link">Lista</a>
-                </li>
+                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
+                    <li class="nav-item">
+                        <a href="{{ route('listRecharge') }}" class="nav-link">Lista</a>
+                    </li>
+                @endif
 
-                <li class="nav-item">
-                  <a href="{{ route('recharge') }}" class="nav-link  text-dark">Criar Recarga</a>
-                </li>
+                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
+                    <li class="nav-item">
+                      <a href="{{ route('recharge') }}" class="nav-link  text-dark">Criar Recarga</a>
+                    </li>
+                @endif
 
-                <li class="nav-item">
-                  <a href="{{ route('rechargeTypes') }}" class="nav-link  text-dark">Tipos de Recarga</a>
-                </li>
+                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
+                    <li class="nav-item">
+                      <a href="{{ route('rechargeTypes') }}" class="nav-link  text-dark">Tipos de Recarga</a>
+                    </li>
+                @endif
               </ul>
             </div>
           </li>
@@ -50,13 +56,18 @@
               <i class="bi bi-kanban"></i> Jogos </a>
             <div class="collapse" id="sidebar-tasks">
               <ul class="nav nav-sm flex-column">
+                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
                 <li class="nav-item">
                   <a href="{{ route('listGames') }}" class="nav-link  text-dark">Lista</a>
                 </li>
+                @endif
 
+                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
                 <li class="nav-item">
                   <a href="{{ route('createGame') }}" class="nav-link text-dark">Criar Jogo</a>
                 </li>
+                @endif
+
               </ul>
             </div>
           </li>
@@ -69,7 +80,7 @@
               <ul class="nav nav-sm flex-column">
 
                 <li class="nav-item">
-                  <a href="pages/user/permissions.html" class="nav-link text-dark">Lista</a>
+                  <a href="{{ route('users') }}" class="nav-link text-dark">Lista</a>
                 </li>
               </ul>
             </div>

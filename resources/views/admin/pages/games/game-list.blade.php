@@ -34,21 +34,23 @@
                             type="button" class="btn-close text-reset text-xs" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
+                    <form action="{{ route('new.game') }}" enctype="multipart/form-data" method="post">
                     <div class="offcanvas-body vstack gap-5">
 
-                        <div><label class="form-label">Nome do Jogo</label> <input type="text" class="form-control"
+                        <div><label class="form-label">Nome do Jogo</label> <input type="text" name="name" class="form-control"
                                 placeholder="Nome do Jogo"> </div>
 
-                        <div><label class="form-label">Breve descricao (Opcional)</label> <textarea class="form-control"
+                        <div><label class="form-label">Breve descricao (Opcional)</label> <textarea name="description" class="form-control"
                                 placeholder="descricao do jogo ..." rows="2"></textarea> </div>
 
-                      <div><label class="form-label">Capa</label>  <input type="file" class="form-control"></div>
+                      <div><label class="form-label">Capa</label>  <input type="file" name="image" class="form-control"></div>
 
                     </div>
 
                     <div class="modal-footer py-2 bg-admin"><button type="button"
                             class="btn btn-sm btn-neutral mx-2" data-bs-dismiss="offcanvas">Fechar</button> <button
                             type="button" class="btn btn-sm btn-primary mx-2">Salvar</button></div>
+                    </form>
                 </div>
 
                 <div class="container-fluid">
@@ -69,36 +71,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><img alt="..." src="{{ asset('images/freefire.jpg') }}"
+                                    @foreach ($games as $game)
+
+                                        <tr>
+                                            <td><img alt="..." src="{{ asset('storage/images/games/'.$game->name.'/'.$game->image) }}"
                                                 class="avatar avatar-sm rounded-circle me-2"> <a
-                                                class="text-heading font-semibold" href="#"><span class=" text-dark">Free Fire</span></a></td>
-                                        <td>23-01-2022</td>
-                                        <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>120</span></td>
+                                                class="text-heading font-semibold" href="#"><span class=" text-dark">{{ $game->name }}</span></a></td>
+                                                <td>{{ $game->created_at->format('d/m/Y') }}</td>
+                                                <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>120</span></td>
+                                                <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
+                                        </tr>
+                                    @endforeach
 
-                                        <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><img alt="..." src="{{ asset('images/fifa.jfif') }}"
-                                                class="avatar avatar-sm rounded-circle me-2"> <a
-                                                class="text-heading font-semibold" href="#"><span class=" text-dark">Fifa 2023</span></a></td>
-                                        <td>23-01-2022</td>
-                                        <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>41</span></td>
-
-                                        <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img alt="..." src="{{ asset('images/pubg2.jfif') }}"
-                                                class="avatar avatar-sm rounded-circle me-2"> <a
-                                                class="text-heading font-semibold" href="#"><span class=" text-dark">PubG</span></a>
-                                        </td>
-                                        <td>23-01-2022</td>
-                                        <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>80</span></td>
-
-
-                                        <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver detalhes</a></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

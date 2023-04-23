@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Game;
+use App\Models\Recharge;
+use App\Models\RechargeType;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,26 +22,34 @@ class DashboardController extends Controller
 
     function recharge(Request $request)
     {
+        $games = Game::all();
+        $rechargeTypes = RechargeType::all();
         $user = $request->user();
-        return view('admin.pages.recargas.create-recharge', compact('user'));
+        return view('admin.pages.recargas.create-recharge', compact('user', 'games', 'rechargeTypes'));
     }
 
     function rechargeTypes(Request $request)
     {
+        $games = Game::all();
         $user = $request->user();
-        return view('admin.pages.recargas.create-rechargeType', compact('user'));
+        return view('admin.pages.recargas.create-rechargeType', compact('user', 'games'));
     }
 
     function listRecharge(Request $request)
     {
+        $recharges = Recharge::all();
+        $games = Game::all();
+        $rechargeTypes = RechargeType::all();
         $user = $request->user();
-        return view('admin.pages.recargas.recharge-list', compact('user'));
+
+        return view('admin.pages.recargas.recharge-list', compact('user', 'recharges', 'games', 'rechargeTypes'));
     }
 
     function listGames(Request $request)
     {
+        $games = Game::all();
         $user = $request->user();
-        return view('admin.pages.games.game-list', compact('user'));
+        return view('admin.pages.games.game-list', compact('user', 'games'));
     }
 
     function createGame(Request $request)
@@ -65,5 +78,12 @@ class DashboardController extends Controller
         }
 
         return view('admin.pages.authentication.basic-login');
+    }
+
+    function users(Request $request)
+    {
+        $users = User::all();
+        $user = $request->user();
+        return view('admin.pages.user.users', compact('user', 'users'));
     }
 }

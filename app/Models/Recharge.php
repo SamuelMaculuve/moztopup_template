@@ -20,4 +20,12 @@ class Recharge extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    function game(){
+        return $this->belongsTo(Game::class, 'game_id');
+    }
+
+    function rechargeType(){
+        return $this->belongsTo(RechargeType::class, 'recharge_type_id');
+    }
 }
