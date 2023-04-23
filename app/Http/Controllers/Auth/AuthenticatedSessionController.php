@@ -28,6 +28,19 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $permissions = $request->user()->permissions;
+        $permissions = explode(",", $permissions);
+
+        if(in_array('admin', $permissions) || in_array('viewer', $permissions) || in_array('creator', $permissions) || in_array('editor', $permissions) ||
+        in_array('deletor', $permissions))
+        {
+            return redirect()->intended(RouteServiceProvider::ADMIN);
+        }
+
+        if(in_array('client', $permissions))
+        {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

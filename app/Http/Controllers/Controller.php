@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -28,8 +29,24 @@ class Controller extends BaseController
         return view('client.profile', compact('user'));
     }
 
-    function login()
+    function login(Request $request)
     {
+        if($request->user()){
+
+            $permissions = $request->user()->permissions;
+            $permissions = explode(",", $permissions);
+
+            if(in_array('admin', $permissions) || in_array('viewer', $permissions) || in_array('creator', $permissions) || in_array('editor', $permissions) ||
+            in_array('deletor', $permissions))
+            {
+                return redirect()->intended(RouteServiceProvider::ADMIN);
+            }
+
+            if(in_array('client', $permissions))
+            {
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
+        }
         return view('client.login');
     }
 
@@ -38,8 +55,4 @@ class Controller extends BaseController
         return view('client.signup');
     }
 
-    function admin()
-    {
-        return view('admin.home');
-    }
 }

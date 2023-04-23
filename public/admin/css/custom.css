@@ -1,0 +1,13 @@
+h1, h2, h3, h4, h5, h6{
+    color: black;
+}
+a{
+    color: black;
+}
+a:hover{
+    background-color: gray !important;
+}
+
+.bg-admin{
+    background-color: #f5f9fc;
+}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -25,12 +26,29 @@ Route::get('/login/user', [Controller::class, 'login'])->name('loginUser');
 
 Route::get('/signup', [Controller::class, 'signup'])->name('signupUser');
 
-Route::get('/dashboard/admin', [Controller::class, 'admin'])->name('admin');
+
+Route::get('/dashboard/login', [DashboardController::class, 'loginPage'])->name('admin.login');
+
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/admin', [DashboardController::class, 'admin'])->name('admin')->middleware('check-permission:admin|viewer|editor|deletor|creator');
+
+    Route::get('/recharge/type', [DashboardController::class, 'rechargeTypes'])->name('rechargeTypes')->middleware('check-permission:admin|viewer|editor|deletor|creator');
+
+    Route::get('/recharge', [DashboardController::class, 'recharge'])->name('recharge')->middleware('check-permission:admin|viewer|editor|deletor|creator');
+
+    Route::get('/recharge/list', [DashboardController::class, 'listRecharge'])->name('listRecharge')->middleware('check-permission:admin|viewer|editor|deletor|creator');
+
+    Route::get('/game', [DashboardController::class, 'createGame'])->name('createGame')->middleware('check-permission:admin|viewer|editor|deletor|creator');
+
+    Route::get('/games/list', [DashboardController::class, 'listGames'])->name('listGames')->middleware('check-permission:admin|viewer|editor|deletor|creator');
+});
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -2,233 +2,24 @@
 @section('content')
 
 <style>
-    h1, h2, h3, h4, h5, h6{
-        color: black;
-    }
-    a{
-        color: black;
-    }
-    a:hover{
-        background-color: gray !important;
-    }
+
 </style>
 
 <div class="d-flex flex-column flex-lg-row h-lg-full"  style="background-color: #f5f9fc;">
-    <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg scrollbar" id="sidebar">
-      <div class="container-fluid">
-        <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="row" style="display: flex; flex-direction: row; align-items: center;" href="index.html">
-            <img src="{{ asset('logo/megashop2.png') }}" style="width: 30% !important; height: 30% !important;">
-            <h3 style="width: 70% !important;"><span style="color: #ff66c4;">MOZ</span><span style="color: #5e17eb;">TOPUP</span></h3>
-        </a>
-        <div class="navbar-user d-lg-none">
-          <div class="dropdown">
-            <a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="avatar-parent-child">
-                <img alt="..." src="{{ asset('admin/img/Unknown_person.jpg') }}" class="avatar avatar- rounded-circle">
-                <span class="avatar-child avatar-badge bg-success"></span>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarAvatar">
-              <a href="#" class="dropdown-item text-dark">Profile</a>
-              <a href="#" class="dropdown-item text-dark">Settings</a>
-              <a href="#" class="dropdown-item text-dark">Billing</a>
-              <hr class="dropdown-divider">
-              <a href="#" class="dropdown-item text-dark">Logout</a>
-            </div>
-          </div>
-        </div>
-        <div class="collapse navbar-collapse" id="sidebarCollapse">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#sidebar-recargas" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-recargas">
-                <i class="bi bi-briefcase"></i> Recargas </a>
-              <div class="collapse" id="sidebar-recargas">
-                <ul class="nav nav-sm flex-column">
-                  <li class="nav-item">
-                    <a href="pages/recargas/Lista.html" class="nav-link">Lista</a>
-                  </li>
 
-                  <li class="nav-item">
-                    <a href="pages/recargas/create-recarga.html" class="nav-link  text-dark">Criar Recarga</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link  text-dark" href="#sidebar-tasks" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-tasks">
-                <i class="bi bi-kanban"></i> Jogos </a>
-              <div class="collapse" id="sidebar-tasks">
-                <ul class="nav nav-sm flex-column">
-                  <li class="nav-item">
-                    <a href="pages/tasks/Lista.html" class="nav-link  text-dark">Lista</a>
-                  </li>
+    @include('admin.layout.navbar_sidebar')
 
-                  <li class="nav-item">
-                    <a href="pages/tasks/create-task.html" class="nav-link text-dark">Criar Jogo</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#sidebar-user" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-user">
-                <i class="bi bi-people"></i> Usuarios
-               </a>
-              <div class="collapse" id="sidebar-user">
-                <ul class="nav nav-sm flex-column">
-
-                  <li class="nav-item">
-                    <a href="pages/user/permissions.html" class="nav-link text-dark">Lista</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="pages/settings/general.html" class="nav-link text-dark">
-                <i class="bi bi-gear"></i> Conta </a>
-            </li>
-
-          </ul>
-
-        </div>
-      </div>
-    </nav>
     <div class="flex-lg-1 h-screen overflow-y-lg-auto">
-      <nav class="navbar navbar-light position-lg-sticky top-lg-0 d-none d-lg-block overlap-10 flex-none bg-white border-bottom px-0 py-3" id="topbar">
-        <div class="container-fluid">
-          <div class="hstack gap-2">
 
-          </div>
-          <form class="form-inline ms-auto me-4 d-none d-md-flex">
-            <div class="input-group input-group-inline shadow-none">
-              <span class="input-group-text border-0 shadow-none ps-0 pe-3">
-                <i class="bi bi-search"></i>
-              </span>
-              <input type="text" class="form-control form-control-flush" placeholder="Search" aria-label="Search">
-            </div>
-          </form>
-          <div class="navbar-user d-none d-sm-block">
-            <div class="hstack gap-3 ms-4">
-              <div class="dropdown">
-                <a href="#" class="nav-link px-3 text-base text-muted text-opacity-70 text-opacity-100-hover" id="dropdown-notifications" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-bell-fill"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end px-2" aria-labelledby="dropdown-notifications">
-                  <div class="dropdown-item d-flex align-items-center">
-                    <h6 class="dropdown-header p-0 m-0 font-semibold">Notifications</h6>
-                    <a href="#" class="text-sm font-semibold ms-auto">Clear all</a>
-                  </div>
-                  <div class="dropdown-item py-3 d-flex">
-                    <div>
-                      <div class="avatar bg-tertiary text-white rounded-circle">RF</div>
-                    </div>
-                    <div class="flex-fill ms-3">
-                      <div class="text-sm lg-snug w-64 text-wrap">
-                        <a href="#" class="font-semibold text-heading text-primary-hover">Robert</a> sent a message to <a href="#" class="font-semibold text-heading text-primary-hover">Webpixels</a>
-                      </div>
-                      <span class="text-muted text-xs">30 mins ago</span>
-                    </div>
-                  </div>
-                  <div class="dropdown-item py-3 d-flex">
-                    <div>
-                      <img alt="..." src="img/people/img-1.jpg" class="avatar rounded-circle">
-                    </div>
-                    <div class="flex-fill ms-3">
-                      <div class="text-sm lg-snug w-64 text-wrap">
-                        <a href="#" class="font-semibold text-heading text-primary-hover">Robert</a> sent a message to <a href="#" class="font-semibold text-heading text-primary-hover">Webpixels</a>
-                      </div>
-                      <span class="text-muted text-xs">30 mins ago</span>
-                    </div>
-                  </div>
-                  <div class="dropdown-item py-3 d-flex">
-                    <div>
-                      <img alt="..." src="{{ asset('admin/img/people/img-2.jpg') }}" class="avatar rounded-circle">
-                    </div>
-                    <div class="flex-fill ms-3">
-                      <div class="text-sm lg-snug w-64 text-wrap">
-                        <a href="#" class="font-semibold text-heading text-primary-hover">Robert</a> sent a message to <a href="#" class="font-semibold text-heading text-primary-hover">Webpixels</a>
-                      </div>
-                      <span class="text-muted text-xs">30 mins ago</span>
-                    </div>
-                  </div>
-                  <div class="dropdown-item py-3 d-flex">
-                    <div>
-                      <div class="avatar bg-success text-white rounded-circle">KW</div>
-                    </div>
-                    <div class="flex-fill ms-3">
-                      <div class="text-sm lg-snug w-64 text-wrap">
-                        <a href="#" class="font-semibold text-heading text-primary-hover">Robert</a> sent a message to <a href="#" class="font-semibold text-heading text-primary-hover">Webpixels</a>
-                      </div>
-                      <span class="text-muted text-xs text-dark">30 mins ago</span>
-                    </div>
-                  </div>
-                  <div class="dropdown-item py-3 d-flex">
-                    <div>
-                      <img alt="..." src="{{ asset('admin/img/people/img-4.jpg') }}" class="avatar rounded-circle">
-                    </div>
-                    <div class="flex-fill ms-3">
-                      <div class="text-sm lg-snug w-64 text-wrap">
-                        <a href="#" class="font-semibold text-heading text-primary-hover">Robert</a> sent a message to <a href="#" class="font-semibold text-heading text-primary-hover">Webpixels</a>
-                      </div>
-                      <span class="text-muted text-xs text-dark">30 mins ago</span>
-                    </div>
-                  </div>
-                  <div class="dropdown-divider"></div>
-                  <div class="dropdown-item py-2 text-center">
-                    <a href="#" class="font-semibold text-muted text-primary-hover">View all</a>
-                  </div>
-                </div>
-              </div>
-              <div class="dropdown">
-                <a class="d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                  <div>
-                    <div class="avatar avatar-sm bg-warning rounded-circle text-white">
-                      <img alt="..." src="{{ asset('admin/img/Unknown_person.jpg') }}">
-                    </div>
-                  </div>
-                  <div class="d-none d-sm-block ms-3">
-                    <span class="h6 text-dark">Kelvin</span>
-                  </div>
-                  <div class="d-none d-md-block ms-md-2">
-                    <i class="bi bi-chevron-down text-muted text-xs"></i>
-                  </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                  <div class="dropdown-header">
-                    <span class="d-block text-sm text-muted mb-1 text-dark">Signed in as</span>
-                    <span class="d-block text-heading font-semibold text-dark">Kelvin</span>
-                  </div>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi bi-house me-3"></i>Home </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi bi-pencil me-3"></i>Edit profile </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi bi-gear me-3"></i>Settings </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi bi-image me-3"></i>Media </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi bi-box-arrow-up me-3"></i>Share </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi bi-person me-3"></i>Login </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+        @include('admin.layout.navbar_profile')
+
       <header>
         <div class="container-fluid">
           <div class="border-bottom pt-6">
             <div class="row align-items-center">
               <div class="col-sm col-12">
                 <h1 class="h2 ls-tight text-dark">
-                  <span class="d-inline-block me-3">👋</span>Ola, Kelvin!
+                  <span class="d-inline-block me-3">👋</span>Ola, {{ $user->name }}!
                 </h1>
               </div>
 
