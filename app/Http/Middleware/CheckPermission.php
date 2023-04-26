@@ -15,17 +15,20 @@ class CheckPermission
      */
     public function handle(Request $request, Closure $next, $permission): Response
     {
-        $user_permissions = $request->user()->permissions;
+        if($request->user()){
 
-        $user_permissions = explode(",", $user_permissions);
+            $user_permissions = $request->user()->permissions;
 
-        $permission = explode('|', $permission);
+            $user_permissions = explode(",", $user_permissions);
 
-        foreach ($permission as $per) {
+            $permission = explode('|', $permission);
 
-            if(in_array($per, $user_permissions))
-            {
-                return $next($request);
+            foreach ($permission as $per) {
+
+                if(in_array($per, $user_permissions))
+                {
+                    return $next($request);
+                }
             }
         }
 

@@ -1,57 +1,11 @@
  @extends('client.layout.main')
  @section('content')
-<style>
-    /* HIDE RADIO */
-.hiddenradio [type=radio] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
 
-/* IMAGE STYLES */
-.hiddenradio [type=radio] + .item {
-  cursor: pointer;
-}
-
-/* CHECKED STYLES */
-.hiddenradio [type=radio]:checked + .item {
-  outline: 2px solid gold;
-}
-
-/* HIDE RADIO */
-.hiddenradiomethod [type=radio] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* IMAGE STYLES */
-.hiddenradiomethod [type=radio] + .item {
-  cursor: pointer;
-}
-
-/* CHECKED STYLES */
-.hiddenradiomethod [type=radio]:checked + .item {
-  outline: 2px solid gold;
-}
-</style>
-
-<!-- ***** Preloader Start ***** -->
-<div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
+@include('layouts.preloader')
 
 @include('client.layout.navbar')
+
+<link rel="stylesheet" href="{{ asset('css/custom_detail.css') }}">
 
   <div class="container">
       <div class="row">
@@ -71,8 +25,9 @@
 
                     </div>
                     <div class="col-lg-8">
-                    <form action="#" method="post">
+                    <form action="{{ route('payment') }}" method="post">
                         @csrf
+                        <input type="hidden" name="game" value="{{ Crypt::encrypt($game->id) }}">
                       <ul class="timeline">
                         <li>
                           <h3>Insira seu Riot ID</h3>
@@ -96,12 +51,12 @@
                             @foreach ($rechargeTypes as $rechargeType)
                                 <div class="col-lg-3 col-sm-6">
                                   <label>
-                                    <input type="radio" name="rechargeType" value="{{ $rechargeType->id }}" {{ $rechargeType == $rechargeType->first() ? 'checked' : "" }}>
+                                    <input type="radio" name="rechargeType" value="{{ Crypt::encrypt($rechargeType->id) }}" {{ $rechargeType == $rechargeType->first() ? 'checked' : "" }}>
                                         <div class="item">
                                             <center>
                                                 <img style="width: 50%;" src="https://cdn1.codashop.com/S/content/common/images/denom-image/LOLWR/50x50/3_LOLWR_WildCore.png" alt="">
                                                 <h4>{{ $rechargeType->title }}</h4>
-                                                <h4>{{ $rechargeType->price }} MZN</h4>
+                                                <h4>{{ number_format($rechargeType->price) }} MZN</h4>
                                             </center>
                                         </div>
                                     </label>
@@ -121,7 +76,7 @@
                                 <label style="width: 100%">
                                     <input type="radio" name="method" value="mpesa" checked>
                                     <div class="item" style="border-radius: 20px; padding-top: 20px; padding-left: 20px; padding-right: 20px;">
-                                      <img src="{{ asset('images/mpesa.png')}}" alt="" class="templatemo-item">
+                                      <img src="{{ asset('images/mpesa-2.png')}}" alt="" class="templatemo-item">
                                       <h4>M-pesa</h4><span>Pague com mpesa</span>
                                     </div>
                                 </label>

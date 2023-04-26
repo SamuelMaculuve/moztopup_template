@@ -1,0 +1,35 @@
+    /* HIDE RADIO */
+    .hiddenradio [type=radio] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* IMAGE STYLES */
+      .hiddenradio [type=radio] + .item {
+        cursor: pointer;
+      }
+
+      /* CHECKED STYLES */
+      .hiddenradio [type=radio]:checked + .item {
+        outline: 2px solid gold;
+      }
+
+      /* HIDE RADIO */
+      .hiddenradiomethod [type=radio] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* IMAGE STYLES */
+      .hiddenradiomethod [type=radio] + .item {
+        cursor: pointer;
+      }
+
+      /* CHECKED STYLES */
+      .hiddenradiomethod [type=radio]:checked + .item {
+        outline: 2px solid gold;
+      }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Acesso Nao autorizado | MozTopup</title>
 </head>
 <body>
     <style>
@@ -15,6 +15,7 @@ html {
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
     overflow: hidden;
+    background-color: #1f2122;
 }
 
 .writing {
@@ -249,12 +250,16 @@ html {
                 transform: scale(.6);
       }
   }
+  h1, h2, p{
+    color: white;
+  }
     </style>
     <div class="container">
         <div class="error">
             <h1>403</h1>
             <h2>Acesso nao autorizado</h2>
-            <p>Infelizmento voce nao tem permissoes suficientes para efectuar esta operacao, porfavor contacte o Administrado.</p>
+            <p>Infelizmento voce nao tem permissoes suficientes para efectuar esta operacao, porfavor contacte o Administrador.</p>
+            <a href="http://127.0.0.0.1" style="color: cyan;">Voltar a pagina principal</a>
         </div>
         <div class="stack-container">
             <div class="card-container">

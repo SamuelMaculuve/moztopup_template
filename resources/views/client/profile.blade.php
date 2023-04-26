@@ -70,11 +70,33 @@
                     <img src="{{ asset('images/profile.jpg')}}"alt="" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-4 align-self-center">
+
+                    @if (Session::get('status'))
+                        <div class="alert alert-primary text-center" role="alert">
+                            {{ Session::get('status') }} <strong>{{ $user->email }}</strong>.
+                        </div>
+                        @php
+                            Session::forget('status');
+                        @endphp
+                    @endif
+
                     <div class="main-info header-text">
                       <span>Online</span>
                       <h4>{{ $user->name }}</h4>
-                      <p>{{ $user->email }}</p>
-                      <p></p>
+                      @if(!$user->hasVerifiedEmail())
+                        <small class="badge bg-danger">Email nao verificado</small>
+                      @endif
+
+                      <p class="mb-2 {{ $user->hasVerifiedEmail() ? 'text-info' : 'text-danger' }}">{{ $user->email }}</p>
+
+                      @if(!$user->hasVerifiedEmail())
+                        <form action="{{ route('verification.send') }}" method="POST">
+                            @csrf
+                            <div>
+                                <button type="submit" class="btn btn-primary w-full">Validar email</button>
+                            </div>
+                        </form>
+                      @endif
 
                     </div>
                   </div>

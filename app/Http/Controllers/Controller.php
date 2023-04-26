@@ -17,10 +17,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    function home()
+    function home(Request $request)
     {
+        $user = null;
+        if($request->user())
+        {
+            $user = $request->user();
+        }
+
         $games = Game::all();
-        return view('home', compact('games'));
+        return view('home', compact('games', 'user'));
     }
 
     function details()
@@ -64,14 +70,38 @@ class Controller extends BaseController
         return view('client.login');
     }
 
-    function signup()
+    function signup(Request $request)
     {
+        if($request->user()){
+
+            $permissions = $request->user()->permissions;
+            $permissions = explode(",", $permissions);
+
+            if(in_array('admin', $permissions) || in_array('viewer', $permissions) || in_array('creator', $permissions) || in_array('editor', $permissions) ||
+            in_array('deletor', $permissions))
+            {
+                return redirect()->intended(RouteServiceProvider::ADMIN);
+            }
+
+            if(in_array('client', $permissions))
+            {
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
+        }
+
         return view('client.signup');
     }
 
-    function payment()
+    function verifyEmail(Request $request)
     {
-        return view('payment');
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+
+
+        $email = $request->user()->email;
+        return view('client.email-verify', compact('email'));
     }
 
 }

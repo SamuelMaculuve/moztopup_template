@@ -21,6 +21,8 @@ class RouteServiceProvider extends ServiceProvider
 
     public const ADMIN = 'dashboard/admin';
 
+    public const VERIFY_EMAIL = '/verifyEmail';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */

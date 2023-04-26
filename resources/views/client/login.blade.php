@@ -1,7 +1,7 @@
 @extends('client.layout.main')
 @section('content')
 @include('client.layout.login_css')
-
+@include('layouts.preloader')
   <div>
     <div
       class="px-5 py-5 p-lg-0 min-h-screen bg-surface-secondary d-flex flex-column justify-content-center"
@@ -32,6 +32,9 @@
           class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-screen d-flex flex-column justify-content-center position-relative"
           style="background-color: #1f2122;"
         >
+            <a class="row d-sm-block d-lg-none d-lx-none" style="display: flex; flex-direction: row; align-items: center; justify-content: center;" href="{{ route('home') }}">
+                <img src="{{ asset('logo/megashop3-removebg-preview.png') }}" style="width: 50% !important; height: 100% !important;">
+            </a>
           <div class="py-lg-16 px-lg-20">
             <div class="row">
               <div class="col-lg-10 col-md-9 col-xl-6 mx-auto ms-xl-0">

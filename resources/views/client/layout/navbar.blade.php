@@ -5,7 +5,7 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="{{ route('admin') }}" class="logo">
+                    <a href="{{ route('home') }}" class="logo">
                         <img src="{{ asset('logo/megashop3-removebg-preview.png')}}" alt="" style="width: 85px;">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -20,7 +20,11 @@
                             <i class="fa fa-search"></i>
                           </form>
                         </div></li>
+                        @if($user)
+                            <li><a href="{{ route('pofilee') }}">Meu perfil<img src="{{ asset('images/profile-header.jpg')}}" alt=""></a></li>
+                        @else
                         <li><a href="{{ route('loginUser') }}">Autentique-se <img src="{{ asset('images/profile-header.jpg')}}" alt=""></a></li>
+                        @endif
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>

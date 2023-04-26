@@ -50,30 +50,32 @@
     <div class="container pt-4">
       <div class="row gy-4 gx-5">
         <div class="col-lg-3 col-md-6">
-          <img src="{{ asset('buid/assets/logo/megashop3-removebg-preview.png')}}" alt="" style="width: 119px;">
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('logo/megashop3-removebg-preview.png')}}" alt="" style="width: 119px;">
+            </a>
         </div>
         <div class="col-lg-3 col-md-6">
-          <h5 class="text-black mb-3">Fique atualizado conosco</h5>
+          <h5 class="text-dark mb-3">Fique atualizado conosco</h5>
           <div class="footer__social-content">
             <a href="https://www.facebook.com/explicadormz/" label="Moztopup Facebook" target="_blank" rel="noopener" aria-label="Moztopup Official Facebook" class="footer__social-links">
-              <img style="width: 8%;"  src="https://cdn1.Moztopup.com/S/content/social-media-logo/36/socmed-facebook-H36.png" alt="Moztopup Official Facebook"  class="footer__icon">
+              <img style="width: 8%;"  src="{{ asset('images/facebook.png') }}" alt="Moztopup Official Facebook"  class="footer__icon">
             </a>
             <a href="https://www.instagram.com/explicadormz/" label="Moztopup Official Instagram" target="_blank" rel="noopener" aria-label="Moztopup Official Instagram" class="footer__social-links">
-              <img style="width: 8%;"  src="https://cdn1.Moztopup.com/S/content/social-media-logo/36/socmed-instagram-H36.png" alt="Moztopup Official Instagram"  class="footer__icon">
+              <img style="width: 8%;"  src="{{ asset('images/instagram.png') }}" alt="Moztopup Official Instagram"  class="footer__icon">
             </a>
             <a style="width: 8%;"  href="https://www.youtube.com/channel/UC-GQDwjTSG33-VopIHmYKRQ" label="Youtube" target="_blank" rel="noopener" aria-label="Youtube" class="footer__social-links">
-              <img style="width: 8%;" src="https://cdn1.Moztopup.com/S/content/social-media-logo/36/socmed-youtube-H36.png" alt="Youtube"  class="footer__icon">
+              <img style="width: 8%;" src="{{ asset('images/youtube.png') }}" alt="Youtube"  class="footer__icon">
             </a>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
-          <h5 class="text-black mb-3">Precisa de ajuda?</h5>
+          <h5 class="text-dark mb-3">Precisa de ajuda?</h5>
           <div class="main-button">
-            <a href="profile.html"> <i class="fa fa-phone"></i> Central de ajuda</a>
+            <a href="tel:+258862502502"> <i class="fa fa-phone"></i> Central de ajuda</a>
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
-          <h5 class="text-black mb-3">Contactos</h5>
+          <h5 class="text-dark mb-3">Contactos</h5>
             <ul>
               <li>Av. Karl Marx, Prédio Arganil 995, 1o andar.</li>
               <li>(+258)862502502</li>
@@ -81,7 +83,7 @@
             </ul>
         </div>
       </div>
-      <p class="small text-muted mb-0 text-center">&copy; Copyrights. All rights reserved. <a class="text-primary" href="https://moztopup.netlify.app/">moztopup</a></p>
+      <p class="small text-muted mb-0 text-center">&copy; 2023 Todos os direitos reservados por <a class="text-primary" href="https://explicador.co.mz/">Explicador INC</a></p>
     </div>
   </footer>
   <!-- Scripts -->

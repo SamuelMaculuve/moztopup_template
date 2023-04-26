@@ -121,8 +121,8 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <div class="card">
-                            <div class="card-header d-flex align-items-center">
+                        <div class="card" style="border: none;">
+                            <div class="card-header d-flex align-items-center bg-light">
                                 <h5 class="me-auto">Todos Usuarios</h5>
                                 <div class="dropdown"><a class="text-muted" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
@@ -134,13 +134,13 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-hover table-nowrap">
+                                <table class="table table-hover table-nowrap bg-light">
                                     <thead class="table-light">
                                         <tr>
                                             <th scope="col">Nome</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Role</th>
-                                            <th scope="col">Acesso</th>
+                                            <th scope="col">Data de Criacao</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -150,11 +150,16 @@
                                             <td><img alt="..." src="{{ asset('admin/img/Unknown_person.jpg') }}"
                                                     class="avatar avatar-sm rounded-circle me-2"> <a
                                                     class="text-heading text-primary-hover font-semibold"
-                                                    href="#">{{ $user->name }}</a></td>
+                                                    href="#"><span class=" text-dark">{{ $user->name }}</span></a></td>
                                             <td>{{ $user->email }}</td>
                                             <td><span
                                                     class="badge text-uppercase bg-soft-primary text-primary rounded-pill">
                                                     {{ $user->permissions }}
+                                                </span>
+                                            </td>
+                                            <td><span
+                                                    class="text-uppercase text-primary rounded-pill">
+                                                   <span> {{ $user->created_at->format('d/m/Y') }} </span>
                                                 </span>
                                             </td>
                                             {{-- <td>

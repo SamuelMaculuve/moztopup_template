@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RechargeController;
 use App\Http\Controllers\RechargeTypeController;
@@ -23,7 +24,7 @@ Route::get('/', [Controller::class, 'home'])->name('home');
 
 Route::get('/details', [Controller::class, 'details'])->name('details');
 
-Route::get('/payment', [Controller::class, 'payment'])->name('payment');
+Route::get('/verifyEmail', [Controller::class, 'verifyEmail'])->name('verifyEmail');
 
 Route::get('/details/{id}', [Controller::class, 'details2'])->name('details2');
 
@@ -66,9 +67,12 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
 });
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth','check-permission:client'])->group(function () {
+
+    Route::post('/payment', [PaymentController::class, 'payment'])->name('payment');
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
