@@ -86,7 +86,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="pages/settings/general.html" class="nav-link text-dark">
+            <a href="{{ route('user.profile') }}" class="nav-link text-dark">
               <i class="bi bi-gear"></i> Conta </a>
           </li>
 

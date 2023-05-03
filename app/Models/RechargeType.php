@@ -18,6 +18,7 @@ class RechargeType extends Model
         'promotion',
         'start_date',
         'end_date',
+        'image',
     ];
 
     protected $dates = ['deleted_at'];

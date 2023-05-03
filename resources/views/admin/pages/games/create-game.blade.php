@@ -26,11 +26,15 @@
             <form action="{{ route('new.game') }}" enctype="multipart/form-data" method="post">
                 @csrf
               <div class="container-fluid max-w-screen-md vstack gap-5">
-                <div>
+
                 <div>
                   <label class="form-label">Nome do Jogo</label>
                   <input type="text" class="form-control" name="name" placeholder="Nome do Jogo" required>
                   <span class="d-block mt-2 text-sm text-muted">Deve ser unico.</span>
+                </div>
+                <div>
+                  <label class="form-label">Criadora</label>
+                  <input type="text" class="form-control" name="produced_by" placeholder="Criadora do Jogo" required>
                 </div>
                 <div>
                     <label class="form-label">Breve descricao (Opcional)</label>
@@ -39,12 +43,12 @@
 
                 <div>
                   <label class="form-label">Capa do Jogo</label>
-                  <input type="file" name="image" accept="png/jpg/jpeg" class="form-control" required>
+                  <input type="file" name="image" accept="image/*" class="form-control" required>
                 </div>
 
                 <button type="submit" class="btn btn-sm mt-5 btn-primary">
                     <span>Salvar</span>
-                  </button
+                </button>
                 {{-- <div class="row gx-4 gy-5">
                   <div class="col-md-6">
                     <div>

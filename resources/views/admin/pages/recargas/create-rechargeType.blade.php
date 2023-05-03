@@ -23,7 +23,7 @@
             </header>
 
             <main class="py-6 bg-admin">
-            <form action="{{ route('new.recharge.type') }}" method="POST">
+            <form action="{{ route('new.recharge.type') }}" enctype="multipart/form-data" method="POST">
                 @csrf
               <div class="container-fluid max-w-screen-md vstack gap-5">
                 <div class="row gx-4">
@@ -53,6 +53,11 @@
                 <div>
                     <label class="form-label">Preco das Recargas</label>
                     <input type="number" name="price" class="form-control" placeholder="Preco das recargas">
+                </div>
+
+                <div>
+                    <label class="form-label">Imagem to tipo da recarga</label>
+                    <input type="file" name="image" accept="image/*" class="form-control" required>
                 </div>
 
                 <hr class="my-2">

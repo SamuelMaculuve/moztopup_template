@@ -14,6 +14,7 @@ class Game extends Model
         'name',
         'image',
         'description',
+        'produced_by',
     ];
 
     protected $dates = ['deleted_at'];

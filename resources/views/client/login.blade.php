@@ -38,6 +38,14 @@
           <div class="py-lg-16 px-lg-20">
             <div class="row">
               <div class="col-lg-10 col-md-9 col-xl-6 mx-auto ms-xl-0">
+                @if (Session::get('status'))
+                    <div class="alert alert-primary text-center" role="alert">
+                        {{ Session::get('status') }}.
+                    </div>
+                    @php
+                        Session::forget('status');
+                    @endphp
+                @endif
                 <div class="mt-10 mt-lg-5 mb-6 d-lg-block">
                   <span class="d-inline-block d-lg-block h1 mb-4 mb-lg-6 me-3"
                     >👋</span
@@ -63,9 +71,9 @@
                       </div>
                       <div class="mb-2">
                         <a
-                          href="side-recover.html"
+                          href="{{ route('reset.password') }}"
                           class="text-sm text-muted text-primary-hover text-underline  text-secondary"
-                          >Forgot password?</a
+                          >Esqueceu a password?</a
                         >
                       </div>
                     </div>

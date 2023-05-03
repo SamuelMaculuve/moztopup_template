@@ -26,6 +26,8 @@ Route::get('/details', [Controller::class, 'details'])->name('details');
 
 Route::get('/verifyEmail', [Controller::class, 'verifyEmail'])->name('verifyEmail');
 
+Route::get('/reset/password', [Controller::class, 'resetPassword'])->name('reset.password');
+
 Route::get('/details/{id}', [Controller::class, 'details2'])->name('details2');
 
 Route::get('/client/profile', [Controller::class, 'pofile'])->middleware(['auth', 'verified'])->name('pofilee');
@@ -54,8 +56,13 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
 
     Route::get('/users/list', [DashboardController::class, 'users'])->name('users')->middleware('check-permission:admin|viewer|editor');
 
+    Route::get('/user/profile', [DashboardController::class, 'userProfile'])->name('user.profile')->middleware('check-permission:admin|viewer|editor');
+
     Route::prefix('games')->group(function () {
         Route::post('/create', [GameController::class, 'store'])->name('new.game')->middleware('check-permission:admin|creator');
+        Route::get('/edit/{game}', [GameController::class, 'edit'])->name('edit.game')->middleware('check-permission:admin|editor');
+        Route::post('/update', [GameController::class, 'update'])->name('update.game')->middleware('check-permission:admin|creator');
+        Route::get('/delete/{id}', [GameController::class, 'destroy'])->name('delete.game')->middleware('check-permission:admin|editor');
     });
 
     Route::prefix('recharges')->group(function () {

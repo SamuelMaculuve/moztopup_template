@@ -47,9 +47,9 @@
                                             </div>
                                             <div class="mb-2">
                                                 <a
-                                                    href=""
+                                                    href="basic-recover.html"
                                                     class="text-sm text-muted text-primary-hover text-underline"
-                                                    ><span class="text-primary">Esqueceu a Password?</span></a
+                                                    ><span class="text-primary">Esqueci a Password?</span></a
                                                 >
                                             </div>
                                         </div>

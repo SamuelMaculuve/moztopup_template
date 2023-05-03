@@ -48,8 +48,8 @@
             <div class="col-lg-3 col-sm-6">
                 <a href="{{ route('details2', ['id'=>Crypt::encrypt($game->id)])}} ">
                   <div class="item">
-                    <img src="{{ asset('storage/images/games/'.$game->name."/".$game->image)}}" alt="">
-                    <h4>{{ $game->name }}<br><span>Garena</span></h4>
+                    <img src="{{ asset('storage/images/games/'.$game->image)}}" alt="">
+                    <h4>{{ $game->name }}<br><span>{{ $game->produced_by }}</span></h4>
                     <ul>
                       <li><i class="fa fa-star"></i> 4.8</li>
 

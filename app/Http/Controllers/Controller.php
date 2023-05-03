@@ -104,4 +104,10 @@ class Controller extends BaseController
         return view('client.email-verify', compact('email'));
     }
 
+    function resetPassword(Request $request)
+    {
+
+        return view('client.forgot-password');
+    }
+
 }

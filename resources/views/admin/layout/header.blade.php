@@ -30,6 +30,7 @@
 
     {{-- Tostr --}}
     <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    @livewireStyles
   </head>
 
 <body>
@@ -42,5 +43,6 @@
     <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
 
+    @livewireScripts
 </body>
 </html>

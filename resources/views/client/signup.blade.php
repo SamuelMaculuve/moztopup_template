@@ -55,18 +55,24 @@
                     <input type="text" class="form-control" id="name" name="name" />
                   </div>
                   <div class="mb-5">
-                    <label class="form-label  text-white" for="email"
+                      <label class="form-label  text-white" for="email"
                       >Email</label
-                    >
-                    <input type="email" class="form-control" id="email" name="email" :value="old('email')" />
-                    @if(isset($messages))
-                        <ul class="text-danger">
-                            @foreach ((array) $messages as $message)
-                            <li> {{ $message }} </li>
-                            @endforeach
+                      >
+                      <input type="email" class="form-control" id="email" name="email" :value="old('email')" />
+                      @if(isset($messages))
+                      <ul class="text-danger">
+                          @foreach ((array) $messages as $message)
+                          <li> {{ $message }} </li>
+                          @endforeach
                         </ul>
-                    @endif
-                  </div>
+                        @endif
+                    </div>
+                    <div class="mb-5">
+                      <label class="form-label  text-white" for="name"
+                        >Telefone</label
+                      >
+                      <input type="tel" class="form-control" minlength="9" maxlength="9" id="phone" name="phone"/>
+                    </div>
                   <div class="mb-5">
                     <div
                       class="d-flex align-items-center justify-content-between"
@@ -142,4 +148,5 @@
     </div>
   </div>
 
+  @include("client.layout.scripts")
 @endsection

@@ -168,20 +168,22 @@
                   <div class="card-title d-flex align-items-center">
                     <h5 class="mb-0">Usuarios Activos</h5>
                     <div class="ms-auto text-end">
-                      <a href="#" class="text-sm font-semibold">Ver todos Usuarios
+                      <a href="{{ route('users') }}" class="text-sm font-semibold">Ver todos Usuarios
 
                       </a>
                     </div>
                   </div>
                   <div class="list-group gap-4">
+                    @foreach ($recentUsers as $recent)
+
                     <div class="list-group-item d-flex align-items-center border rounded">
                       <div class="me-4">
                         <div class="avatar rounded-circle">
-                          <img alt="..." src="{{ asset('admin/img/people/img-1.jpg') }}">
+                          <img alt="..." src="{{ asset('admin/img/Unknown_person.jpg') }}">
                         </div>
                       </div>
                       <div class="flex-fill">
-                        <a href="#" class="d-block h6 font-semibold mb-1"><span class="text-dark">Norman Mohrbacher</span></a>
+                        <h2 class="d-block h6 font-semibold mb-1"><span class="text-dark">{{ $recent->name }}</span></h2>
 
                       </div>
                       <div class="ms-auto text-end">
@@ -197,52 +199,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="list-group-item d-flex align-items-center border rounded">
-                      <div class="me-4">
-                        <div class="avatar rounded-circle">
-                          <img alt="..." src="{{ asset('admin/img/people/img-2.jpg') }}">
-                        </div>
-                      </div>
-                      <div class="flex-fill">
-                        <a href="#" class="d-block h6 font-semibold mb-1"><span class="text-dark">Leeann Monnet</span></a>
 
-                      </div>
-                      <div class="ms-auto text-end">
-                        <div class="dropdown">
-                          <a class="text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bi bi-three-dots-vertical"></i>
-                          </a>
-                          <div class="dropdown-menu">
-                            <a href="#!" class="dropdown-item">Action </a>
-                            <a href="#!" class="dropdown-item">Another action </a>
-                            <a href="#!" class="dropdown-item">Something else here</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center border rounded">
-                      <div class="me-4">
-                        <div class="avatar rounded-circle">
-                          <img alt="..." src="{{ asset('admin/img/people/img-3.jpg') }}">
-                        </div>
-                      </div>
-                      <div class="flex-fill">
-                        <a href="#" class="d-block h6 font-semibold mb-1"><span class="text-dark">Kathe Rahimi</span></a>
-
-                      </div>
-                      <div class="ms-auto text-end">
-                        <div class="dropdown">
-                          <a class="text-muted" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bi bi-three-dots-vertical"></i>
-                          </a>
-                          <div class="dropdown-menu">
-                            <a href="#!" class="dropdown-item">Action </a>
-                            <a href="#!" class="dropdown-item">Another action </a>
-                            <a href="#!" class="dropdown-item">Something else here</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    @endforeach
                   </div>
                 </div>
               </div>

@@ -17,7 +17,9 @@ class DashboardController extends Controller
     {
         $user = $request->user();
 
-        return view('admin.home', compact('user'));
+        $recentUsers = User::limit(4)->orderBy('id', 'DESC')->get();
+
+        return view('admin.home', compact('user', 'recentUsers'));
     }
 
     function recharge(Request $request)
@@ -85,5 +87,11 @@ class DashboardController extends Controller
         $users = User::all();
         $user = $request->user();
         return view('admin.pages.user.users', compact('user', 'users'));
+    }
+
+    function userProfile(Request $request)
+    {
+        $user = $request->user();
+        return view('admin.pages.user.profile', compact('user'));
     }
 }

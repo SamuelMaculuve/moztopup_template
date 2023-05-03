@@ -74,12 +74,12 @@
                                     @foreach ($games as $game)
 
                                         <tr>
-                                            <td><img alt="..." src="{{ asset('storage/images/games/'.$game->name.'/'.$game->image) }}"
+                                            <td><img alt="{{ $game->name }}" src="{{ asset('storage/images/games/'.$game->image) }}"
                                                 class="avatar avatar-sm rounded-circle me-2"> <a
                                                 class="text-heading font-semibold" href="#"><span class=" text-dark">{{ $game->name }}</span></a></td>
                                                 <td>{{ $game->created_at->format('d/m/Y') }}</td>
                                                 <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>120</span></td>
-                                                <td class="text-end"><a href="#" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
+                                                <td class="text-end"><a href="{{ route('edit.game', ['game'=> $game->id]) }}" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
                                         </tr>
                                     @endforeach
 

@@ -94,7 +94,7 @@
                                     @foreach ($recharges as $recharge)
 
                                         <tr>
-                                            <td><img alt="..." src="{{ asset('storage/images/games/'.$recharge->game->name.'/'.$recharge->game->image) }}"
+                                            <td><img alt="..." src="{{ asset('storage/images/games/'.$recharge->game->image) }}"
                                                 class="avatar avatar-sm rounded-circle me-2"> <a
                                                 class="text-heading font-semibold" href="#"><span class=" text-dark">{{ $recharge->game->name }}</span></a></td>
                                                 <td>{{ $recharge->created_at->format('d/m/Y') }}</td>
