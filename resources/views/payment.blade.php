@@ -1,14 +1,15 @@
 @extends('client.layout.main')
 @section('content')
+    @include('layouts.preloader')
 
-{{-- @include('pre') --}}
+    @include('client.layout.navbar')
+    <link rel="stylesheet" href="{{ asset('css/custom_payment.css') }}">
 
-@include('client.layout.navbar')
-<link rel="stylesheet" href="{{ asset('css/custom_payment.css') }}">
-
-     <div class="container d-flex align-items-center" style="margin-top: 150px;">
-         <div class="col">
-             <h1 class="h3 mb-5 text-center">Finalizar Comprar</h1>
+    <div class="container d-flex align-items-center" style="margin-top: 150px;">
+        <form action="{{ route('payment.request') }}" method="post">
+            @csrf
+        <div class="col">
+            <h1 class="h3 mb-5 text-center">Finalizar Comprar</h1>
              <div class="row d-flex justify-content-center align-items-center">
                  <!-- Left -->
                  <div class="col-lg-6">
@@ -16,7 +17,7 @@
                         <div class="col-lg-3 col-sm-6 p-2">
                             <div class="item">
                                 <center>
-                                    <img style="width: 90%;" src="{{ asset('storage/images/games/'.$game->name."/".$game->image)}}" alt="">
+                                    <img style="width: 90%;" src="{{ asset('storage/images/games/'.$game->image)}}" alt="">
                                     <h6 class="mt-2 text-dark">{{ $game->name }}</h6>
                                 </center>
                             </div>
@@ -57,13 +58,19 @@
                                  <div class="accordion-body">
                                      <div class="mb-3">
                                          <label class="form-label">N&uacute;mero de telefone</label>
-                                         <input type="text" maxlength="9" minlength="9" class="form-control">
+                                         <input type="text" maxlength="9" minlength="9" name="phone" class="form-control">
                                      </div>
                                  </div>
                              </div>
                          </div>
                      </div>
                  </div>
+
+                 {{-- INPUTS --}}
+                 <input type="hidden" name="method" value="{{$method}}">
+                 <input type="hidden" name="rechargeType" value="{{$rechargeType->id}}">
+                 {{-- INPUTS --}}
+
                  <!-- Right -->
                  <div class="col-lg-3">
                      <div class="card position-sticky top-0">
@@ -75,9 +82,9 @@
                              <div class="d-flex justify-content-between mb-1 small">
                                  <span>Tipo de Recarga:</span> <small>{{ $rechargeType->title }}</small>
                              </div>
-                             <div class="d-flex justify-content-between mb-1 small">
+                             {{-- <div class="d-flex justify-content-between mb-1 small">
                                  <span>Taxa</span> <span class="text-danger">10.00 MZN</span>
-                             </div>
+                             </div> --}}
                              <hr>
                              <div class="d-flex justify-content-between mb-4 small">
                                  <span>TOTAL</span> <strong class="text-dark">{{ number_format($rechargeType->price) }} MZN</strong>
@@ -96,12 +103,13 @@
                                          Privacidade</a>
                                  </label>
                              </div>
-                             <button class="btn btn-primary w-100 mt-2">Pagar</button>
+                             <button type="submit" class="btn btn-primary w-100 mt-2">Pagar</button>
                          </div>
                      </div>
                  </div>
              </div>
          </div>
+        </form>
      </div>
 
      @include('client.layout.footer')

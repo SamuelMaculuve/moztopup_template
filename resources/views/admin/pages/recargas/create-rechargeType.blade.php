@@ -23,8 +23,15 @@
             </header>
 
             <main class="py-6 bg-admin">
-            <form action="{{ route('new.recharge.type') }}" enctype="multipart/form-data" method="POST">
+                {{-- <img src="{{ asset('storage/images/games/'.$recharge->game->image)}}" width="250px" height="250px" alt="" srcset=""> --}}
+
+                @if ($rechargeType != null)
+                    <form action="{{ route('edit.recharge.type', ['rechargeType'=> $rechargeType->id]) }}" enctype="multipart/form-data" method="POST">
+                @else
+                    <form action="{{ route('new.recharge.type') }}" enctype="multipart/form-data" method="POST">
+                @endif
                 @csrf
+
               <div class="container-fluid max-w-screen-md vstack gap-5">
                 <div class="row gx-4">
                     <div class="col">
@@ -32,7 +39,11 @@
                         <label class="form-label">Selecione o Jogo</label>
                         <select class="form-select" name="game_id">
                           @foreach ($games as $game)
-                          <option value="{{ $game->id }}">{{ $game->name }}</option>
+                            @if (isset($rechargeType) && $game->game_id == $rechargeType->game_id)
+                                <option value="{{ $game->id }}" selected>{{ $game->name }}</option>
+                            @else
+                                <option value="{{ $game->id }}">{{ $game->name }}</option>
+                            @endif
                           @endforeach
                         </select>
                       </div>
@@ -46,13 +57,21 @@
                 </div>
                 <div>
                     <label class="form-label">Breve descricao (Opcional)</label>
+                    @if ($rechargeType == null)
                     <textarea class="form-control" name="description" placeholder="Project description ..." rows="2"></textarea>
+                    @else
+                    <textarea class="form-control" name="description" value="{{ $rechargeType->description }}"  placeholder="Project description ..." rows="2"></textarea>
+                    @endif
                 </div>
                 <hr class="my-0">
 
                 <div>
                     <label class="form-label">Preco das Recargas</label>
+                    @if ($rechargeType == null)
                     <input type="number" name="price" class="form-control" placeholder="Preco das recargas">
+                    @else
+                    <input type="number" name="price" class="form-control"  value="{{ $rechargeType->price }}" placeholder="Preco das recargas">
+                    @endif
                 </div>
 
                 <div>

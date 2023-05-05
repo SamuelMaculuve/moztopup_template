@@ -5,6 +5,10 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'client_id' => env('E2P_CLIENT_ID',"984f673f-a3a2-4182-8700-00005f993de1"),
+    'client_secret' => env('E2P_CLIENT_SECRET',"NxCPOG4LpaKIDAO1ni1PKK8TGcoVPP8QGYI0uetL"),
+    'wallet_mpesa' => env('E2P_WALLET_MPESA',"897597"),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

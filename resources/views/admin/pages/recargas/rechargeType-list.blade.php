@@ -21,11 +21,12 @@
                 </div>
             </header>
             <main class="py-6 bg-admin">
+
                 <div class="container-fluid">
 
                     <div class="card bg-light" style="border: none;">
                         <div class="card-header border-bottom">
-                            <h5 class="mb-0">Lista de Tipo de Recargas</h5>
+                            <h5 class="mb-0">Lista de Recargas</h5>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table-nowrap">
@@ -35,6 +36,7 @@
                                         <th scope="col">Data</th>
                                         <th scope="col">Tipo de Recarga</th>
                                         <th scope="col">Estado</th>
+
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -42,14 +44,14 @@
                                     @foreach ($rechargeTypes as $rechargeType)
 
                                         <tr>
-                                            <td><img alt="..." src="{{ asset('storage/images/games/'.$rechargeType->game->name.'/'.$rechargeType->game->image) }}"
+                                            <td><img alt="..." src="{{ asset('storage/images/games/'.$rechargeType->game->image) }}"
                                                 class="avatar avatar-sm rounded-circle me-2"> <a
                                                 class="text-heading font-semibold" href="#"><span class=" text-dark">{{ $rechargeType->game->name }}</span></a></td>
                                                 <td>{{ $rechargeType->created_at->format('d/m/Y') }}</td>
                                                 <td>{{ $rechargeType->title }}</td>
                                                 <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>Publicada</span></td>
 
-                                                <td class="text-end"><a href="{{ route('update.recharge.type', ['rechargeType'=> $rechargeType->id]) }}" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
+                                            <td class="text-end"><a href="{{ route('update.recharge.type', ['rchtype'=> $rechargeType->id]) }}" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -18,7 +18,7 @@
                 <div class="feature-banner header-text">
                   <div class="row">
                     <div class="col-lg-4 text-light">
-                      <img src="{{ asset('storage/images/games/'.$game->name."/".$game->image)}}" alt="" style="border-radius: 23px;">
+                      <img src="{{ asset('storage/images/games/'.$game->image)}}" alt="" style="border-radius: 23px;">
                       <h3 class="pt-4">{{ $game->name }}</h3>
                       <p>Recarregue {{ $game->name }}: {{ $game->description }}</p>
                         Pague com comodidade usando M-Pesa, E-Mola. E preciso se regitrar e fazer o login!

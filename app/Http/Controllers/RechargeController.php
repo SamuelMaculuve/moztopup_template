@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recharge;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class RechargeController extends Controller
@@ -85,9 +86,10 @@ class RechargeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Recharge $recharge)
+    public function editRecharge(Recharge $recharge, Request $request)
     {
-        //
+        $user = $request->user();
+        return view('admin.pages.recargas.details', compact('recharge', 'user'));
     }
 
     /**
@@ -95,7 +97,7 @@ class RechargeController extends Controller
      */
     public function update(Request $request, Recharge $recharge)
     {
-        //
+
     }
 
     /**
@@ -103,6 +105,13 @@ class RechargeController extends Controller
      */
     public function destroy(Recharge $recharge)
     {
-        //
+        if($recharge->user_id != null) {
+            Toastr::warning("Esta recarga nao pode ser removida pois ha foi comprada");
+            return back();
+        }
+
+        $recharge->delete();
+        Toastr::success("Recarga removida com sucesso");
+        return Redirect(route('listRecharge'));
     }
 }

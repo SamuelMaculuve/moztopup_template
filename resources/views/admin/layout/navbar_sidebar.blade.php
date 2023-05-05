@@ -31,21 +31,24 @@
               <i class="bi bi-briefcase"></i> Recargas </a>
             <div class="collapse" id="sidebar-recargas">
               <ul class="nav nav-sm flex-column">
-                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
+                @if (in_array('editor', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
                     <li class="nav-item">
                         <a href="{{ route('listRecharge') }}" class="nav-link">Lista</a>
                     </li>
                 @endif
 
-                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
+                @if (in_array('editor', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
                     <li class="nav-item">
                       <a href="{{ route('recharge') }}" class="nav-link  text-dark">Criar Recarga</a>
                     </li>
                 @endif
 
-                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
+                @if (in_array('editor', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
                     <li class="nav-item">
-                      <a href="{{ route('rechargeTypes') }}" class="nav-link  text-dark">Tipos de Recarga</a>
+                      <a href="{{ route('rechargeTypes') }}" class="nav-link  text-dark">Criar tipo de Recarga</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('list.recharge.type') }}" class="nav-link  text-dark">Listar Tipo de Recarga</a>
                     </li>
                 @endif
               </ul>
@@ -56,13 +59,13 @@
               <i class="bi bi-kanban"></i> Jogos </a>
             <div class="collapse" id="sidebar-tasks">
               <ul class="nav nav-sm flex-column">
-                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
+                @if (in_array('editor', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
                 <li class="nav-item">
                   <a href="{{ route('listGames') }}" class="nav-link  text-dark">Lista</a>
                 </li>
                 @endif
 
-                @if (in_array('viewer', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
+                @if (in_array('editor', explode(",",$user->permissions)) || in_array('admin', explode(",",$user->permissions)))
                 <li class="nav-item">
                   <a href="{{ route('createGame') }}" class="nav-link text-dark">Criar Jogo</a>
                 </li>

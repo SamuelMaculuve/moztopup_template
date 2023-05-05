@@ -24,9 +24,11 @@ class RechargeTypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $rechargeTypes = RechargeType::all();
+        $user = $request->user();
+        return view('admin.pages.recargas.rechargeType-list', compact('rechargeTypes', 'user'));
     }
 
     /**
@@ -200,9 +202,12 @@ class RechargeTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RechargeType $rechargeType)
+    public function update($rchtype)
     {
-        //
+        dd($rchtype);
+        $games = Game::all();
+        $user = Request::user();
+        return view('admin.pages.recargas.create-rechargeType', compact('user', 'games', 'rechargeType'));
     }
 
     /**

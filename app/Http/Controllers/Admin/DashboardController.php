@@ -34,7 +34,8 @@ class DashboardController extends Controller
     {
         $games = Game::all();
         $user = $request->user();
-        return view('admin.pages.recargas.create-rechargeType', compact('user', 'games'));
+        $rechargeType = null;
+        return view('admin.pages.recargas.create-rechargeType', compact('user', 'games', 'rechargeType'));
     }
 
     function listRecharge(Request $request)
@@ -93,5 +94,20 @@ class DashboardController extends Controller
     {
         $user = $request->user();
         return view('admin.pages.user.profile', compact('user'));
+    }
+
+    function changePermission(Request $request)
+    {
+        $permission = $request->permission;
+
+        $user = User::find($request->user);
+
+        $user->permissions = $permission;
+
+        $user->save();
+
+        Toastr::success('Permissao actualizada com sucesso para '. $user->name);
+
+        return back();
     }
 }

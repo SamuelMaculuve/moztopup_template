@@ -12,13 +12,13 @@
                             <div class="col-sm col-12">
                                 <h1 class="h2 ls-tight text-dark">Usuarios</h1>
                             </div>
-                            <div class="col-sm-auto col-12 mt-4 mt-sm-0">
+                            {{-- <div class="col-sm-auto col-12 mt-4 mt-sm-0">
                                 <div class="hstack gap-2 justify-content-sm-end">
                                     <a href="#offcanvasCreate" class="btn btn-sm btn-primary"
                                         data-bs-toggle="offcanvas"><span class="pe-2"><i
                                                 class="bi bi-plus-square-dotted"></i> </span><span>Criar</span></a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,15 @@
                                                     href="#"><span class=" text-dark">{{ $user->name }}</span></a></td>
                                             <td>{{ $user->email }}</td>
                                             <td><span
-                                                    class="badge text-uppercase bg-soft-primary text-primary rounded-pill">
+                                                    class="badge text-uppercase
+                                                    @php
+                                                    if(explode(",",$user->permissions)[0]== "CLIENT")'bg-soft-primary';
+                                                    if($user->permissions== "ADMIN") 'bg-warning';
+                                                    if($user->permissions== "EDITOR") 'bg-info';
+                                                    if($user->permissions== "BLOCKED") 'bg-danger';
+
+                                                    @endphp
+                                                    text-primary rounded-pill">
                                                     {{ $user->permissions }}
                                                 </span>
                                             </td>
@@ -162,26 +170,46 @@
                                                    <span> {{ $user->created_at->format('d/m/Y') }} </span>
                                                 </span>
                                             </td>
-                                            {{-- <td>
-                                                <div class="dropdown"><a href="#"
-                                                        class="font-semibold text-heading text-primary-hover"
+                                            <td>
+                                                <div class="dropdown"><button href="#"
+                                                        class="font-semibold text-heading text-primary-hover badge bg-info text-dark"
                                                         role="button" data-bs-toggle="dropdown"
-                                                        aria-expanded="false">Full Access<i
-                                                            class="bi bi-chevron-down ms-2 text-xs"></i></a>
+                                                        aria-expanded="false">Editar Permissoes<i
+                                                            class="bi bi-chevron-down ms-2 text-xs"></i></button>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#">Full access</a></li>
-                                                        <li><a class="dropdown-item" href="#">Can view</a></li>
-                                                        <li><a class="dropdown-item" href="#">Can edit</a></li>
-                                                        <li><a class="dropdown-item" href="#">Can publish</a></li>
+                                                        <form action="{{ route('user.changepermission') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="permission" value="CLIENT">
+                                                            <input type="hidden" name="user" value="{{$user->id}}">
+                                                            <li><button class="dropdown-item" type="submit">Remover Permissoes da Equipe</button></li>
+                                                        </form>
+                                                        <form action="{{ route('user.changepermission') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="permission" value="EDITOR">
+                                                            <input type="hidden" name="user" value="{{$user->id}}">
+                                                            <li><button type="submit" class="dropdown-item">Editor</button></li>
+                                                        </form>
+                                                        <form action="{{ route('user.changepermission') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="permission" value="ADMIN">
+                                                            <input type="hidden" name="user" value="{{$user->id}}">
+                                                            <li><button class="dropdown-item" type="submit">Administrador</button></li>
+                                                        </form>
+                                                        <form action="{{ route('user.changepermission') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="permission" value="BLOCKED">
+                                                            <input type="hidden" name="user" value="{{$user->id}}">
+                                                            <li><button class="dropdown-item" type="submit">Restringir Acesso</button></li>
+                                                        </form>
                                                     </ul>
                                                 </div>
-                                            </td> --}}
-                                            <td class="text-end"><a href="#"
+                                            </td>
+                                            {{-- <td class="text-end"><a href="#"
                                                     class="btn btn-sm btn-square btn-neutral me-1"><i
                                                         class="bi bi-pencil"></i> </a><button type="button"
                                                     class="btn btn-sm btn-square btn-neutral text-danger-hover"><i
                                                         class="bi bi-trash"></i></button></td>
-                                        </tr>
+                                            </tr> --}}
                                         @endforeach
                                     </tbody>
                                 </table>

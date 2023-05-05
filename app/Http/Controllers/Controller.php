@@ -34,19 +34,22 @@ class Controller extends BaseController
         return view('details');
     }
 
-    function details2($id)
+    function details2(Request $request,$id)
     {
         $id = Crypt::decrypt($id);
         $game = Game::find($id);
+        $user = $request->user();
+
         $rechargeTypes = RechargeType::where('game_id', $id)->get();
 
-        return view('details2', compact('rechargeTypes', 'game'));
+        return view('details2', compact('user','rechargeTypes', 'game'));
     }
 
     function pofile(Request $request) : View
     {
         $user = $request->user();
-        return view('client.profile', compact('user'));
+        $recharges = Recharge::where('user_id', $user->id)->get();
+        return view('client.profile', compact('user', 'recharges'));
     }
 
     function login(Request $request)
