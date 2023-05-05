@@ -25,9 +25,11 @@
       <main class="py-6 bg-admin d-flex flex-column align-items-center justify-content-center">
 
         <img src="{{ asset('storage/images/games/'.$recharge->game->image)}}" width="250px" height="250px" alt="" srcset="">
-        <a href="{{ route('delete.recharge', ['recharge'=> $recharge->id]) }}" class="btn btn-sm mt-5 btn-danger">
-            <span>Remover</span>
-        </a>
+        @if($recharge->user_id == null)
+            <a href="{{ route('delete.recharge', ['recharge'=> $recharge->id]) }}" class="btn btn-sm mt-5 btn-danger">
+                <span>Remover</span>
+            </a>
+        @endif
 
         <form action="{{ route('update.game') }}" class="col-12" enctype="multipart/form-data" method="post">
             @csrf
@@ -36,13 +38,16 @@
 
             <div>
               <label class="form-label">Tipo de Recarga</label>
-              <input type="text" class="form-control" placeholder="Nome do Jogo" required value="{{ $recharge->rechargeType->title }}" dissabled>
+              <input type="text" class="form-control" placeholder="Nome do Jogo" required value="{{ $recharge->rechargeType->title }}" disabled>
             </div>
 
             <div>
               <label class="form-label">Codigo da Recarga</label>
               @if (in_array('admin', explode(",",$user->permissions)))
-              <input type="text" class="form-control" placeholder="Nome do Jogo" required value="{{ $recharge->game->name }}">
+              <input type="text" class="form-control" placeholder="Nome do Jogo" required value="{{ $recharge->code }}">
+              @if($recharge->user_id != null)
+                <span class="text-danger">Atencao: Esta recarga ja foi comprada!</span>
+              @endif
               @else
                 <h2>So o administrador tem a permissao de editar o codigo da recarga</h2>
                 @endif

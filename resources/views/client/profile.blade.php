@@ -102,8 +102,8 @@
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <ul>
-                      <li>Recargas adquiridas <span>3</span></li>
-                      <li>Jogos baixados <span>16</span></li>
+                      <li>Recargas adquiridas <span>{{ $own_recharges }}</span></li>
+                      {{-- <li>Jogos baixados <span>16</span></li> --}}
 
                     </ul>
                   </div>
@@ -118,7 +118,7 @@
                           </div>
                         </div>
                         @foreach ($recharges as $recharge)
-                            
+
                         <div class="col-lg-3 col-sm-6">
                             <div class="item">
                             <div class="thumb">
@@ -131,7 +131,7 @@
                             </div>
                             </div>
                         </div>
-                    
+
                     @endforeach
                       </div>
                     </div>

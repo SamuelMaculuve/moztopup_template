@@ -26,7 +26,10 @@ class Controller extends BaseController
         }
 
         $games = Game::all();
-        return view('home', compact('games', 'user'));
+        $promotions = RechargeType::where(['promotion'=> true])->get();
+        $promotions = collect($promotions)->unique('game_id');
+
+        return view('home', compact('games', 'user', 'promotions'));
     }
 
     function details()
@@ -42,6 +45,10 @@ class Controller extends BaseController
 
         $rechargeTypes = RechargeType::where('game_id', $id)->get();
 
+        $rechargeTypes = Recharge::where(['game_id'=> $id, 'user_id'=> null])->get();
+
+        $rechargeTypes = collect($rechargeTypes)->unique('recharge_type_id');
+
         return view('details2', compact('user','rechargeTypes', 'game'));
     }
 
@@ -49,7 +56,8 @@ class Controller extends BaseController
     {
         $user = $request->user();
         $recharges = Recharge::where('user_id', $user->id)->get();
-        return view('client.profile', compact('user', 'recharges'));
+        $own_recharges = Recharge::where('user_id', $user->id)->count();
+        return view('client.profile', compact('user', 'recharges', 'own_recharges'));
     }
 
     function login(Request $request)

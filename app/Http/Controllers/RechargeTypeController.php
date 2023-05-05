@@ -83,7 +83,7 @@ class RechargeTypeController extends Controller
 
             $game = Game::find($request->game_id);
 
-            $path = explode("/", $game)[0];
+            $path = explode("/", $game->image)[0];
 
             $newFileName = Uuid::uuid1();
 
@@ -106,8 +106,8 @@ class RechargeTypeController extends Controller
         $rechargeType->price = $request->price;
         $rechargeType->description = $request->description;
         $rechargeType->promotion = $request->promotion=='true' ? true : false;
-        $rechargeType->start_date = $request->start_date;
-        $rechargeType->end_date = $request->end_date;
+        $rechargeType->start_date = date('Y-m-d H:i:s', strtotime($request->start_date));
+        $rechargeType->end_date = date('Y-m-d H:i:s', strtotime($request->end_date));
         $rechargeType->image = $path."/".$fileName;
         $rechargeType->save();
 
@@ -167,7 +167,7 @@ class RechargeTypeController extends Controller
 
             $game = Game::find($request->game_id);
 
-            $path = explode("/", $game)[0];
+            $path = explode("/", $game->image)[0];
 
             $newFileName = Uuid::uuid1();
 

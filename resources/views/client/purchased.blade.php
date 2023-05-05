@@ -13,8 +13,8 @@
              <div class="row d-flex justify-content-center align-items-center">
                  <!-- Left -->
                  <div class="col-12">
-                    <div class="row d-none d-lg-flex d-md-flex mb-2 gap-2 mx-1 justify-content-center" style="background-color: white; border-radius: 5px;">
-                        <div class="col-lg-12 col-sm-6 p-2">
+                    <div class="row d-lg-flex d-md-flex mb-2 gap-2 mx-1 justify-content-center" style="background-color: white; border-radius: 5px;">
+                        <div class="col-lg-8 col-sm-6 p-2">
                             <div class="item">
                                 <center>
                                     <img style="width: 90%;" src="{{ asset('storage/images/games/'.$recharge->game->image)}}" alt="">
@@ -22,7 +22,7 @@
                                 </center>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 p-2">
+                        <div class="col-lg-8 col-sm-6 p-2">
                             <div class="item">
                                 <center>
                                     <img style="width: 50%;" src="https://cdn1.codashop.com/S/content/common/images/denom-image/LOLWR/50x50/3_LOLWR_WildCore.png" alt="">
@@ -44,7 +44,7 @@
                                  data-bs-parent="#accordionPayment" style="">
                                  <div class="accordion-body">
                                      <div class="mb-3">
-                                         <label class="form-label">N&uacute;mero de telefone</label>
+                                         <label class="form-label">Codigo da recarga</label>
                                          <input type="tel" value="{{ $recharge->code }}" class="form-control" disabled>
                                      </div>
                                  </div>

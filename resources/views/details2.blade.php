@@ -18,7 +18,7 @@
                 <div class="feature-banner header-text">
                   <div class="row">
                     <div class="col-lg-4 text-light">
-                      <img src="{{ asset('storage/images/games/'.$game->image)}}" alt="" style="border-radius: 23px;">
+                      <img src="{{ asset('storage/images/games/'.$game->image) }}" alt="" style="border-radius: 23px;">
                       <h3 class="pt-4">{{ $game->name }}</h3>
                       <p>Recarregue {{ $game->name }}: {{ $game->description }}</p>
                         Pague com comodidade usando M-Pesa, E-Mola. E preciso se regitrar e fazer o login!
@@ -48,15 +48,20 @@
                           <div class="most-popular">
 
                             <div class="row hiddenradio">
-                            @foreach ($rechargeTypes as $rechargeType)
+                            @foreach ($rechargeTypes as $recharge)
                                 <div class="col-lg-3 col-sm-6">
                                   <label>
-                                    <input type="radio" name="rechargeType" value="{{ Crypt::encrypt($rechargeType->id) }}" {{ $rechargeType == $rechargeType->first() ? 'checked' : "" }}>
+                                    <input type="radio" name="rechargeType" value="{{ Crypt::encrypt($recharge->rechargeType->id) }}" {{ $recharge->rechargeType == $recharge->rechargeType->first() ? 'checked' : "" }}>
                                         <div class="item">
                                             <center>
+                                                @if(!$recharge->rechargeType->image)
                                                 <img style="width: 50%;" src="https://cdn1.codashop.com/S/content/common/images/denom-image/LOLWR/50x50/3_LOLWR_WildCore.png" alt="">
-                                                <h4>{{ $rechargeType->title }}</h4>
-                                                <h4>{{ number_format($rechargeType->price) }} MZN</h4>
+                                                @else
+                                                <img style="width: 50%;" src="{{ asset('storage/images/games/'.$recharge->rechargeType->image) }}" alt="">
+                                                @endif
+
+                                                <h4>{{ $recharge->rechargeType->title }}</h4>
+                                                <h4>{{ number_format($recharge->rechargeType->price) }} MZN</h4>
                                             </center>
                                         </div>
                                     </label>

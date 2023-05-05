@@ -61,119 +61,50 @@
         </div>
         <!-- ***** Most Popular End ***** -->
         <!-- ***** Most Popular Start *****-->
+        @if($promotions)
         <div class="most-popular">
           <div class="heading-section">
-            <h4><em>JOGOS COM</em> RECARGA PARA PAYTION</h4>
+            <h4><em>RECARGAS EM</em> PROMOCAO</h4>
           </div>
           <div class="row">
+
+            @foreach ($promotions as $game)
+
             <div class="col-lg-3 col-sm-6">
-              <a href="more_details.html">
-                <div class="item">
-                  <img src="{{ asset('images/popular-02.jpg')}}" alt="">
-                  <h4>Fortnite<br><span>Sandbox</span></h4>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
-
-                  </ul>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <a href="more_details.html">
-                <div class="item">
-                  <img src="{{ asset('images/popular-01.jpg')}}" alt="">
-                  <h4>PubG<br><span>Battle S</span></h4>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
-
-                  </ul>
-                </div></a>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <a href="more_details.html">
-                <div class="item">
-                  <img src="{{ asset('images/popular-05.jpg')}}" alt="">
-                  <h4>Dota2<br><span>Steam-X</span></h4>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
-
-                  </ul>
-                </div></a>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <a href="more_details.html">
-                <div class="item">
-                  <img src="{{ asset('images/popular-03.jpg')}}" alt="">
-                  <h4>CS-GO<br><span>Legendary</span></h4>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
-
-                  </ul>
-                </div></a>
-            </div>
-            <div class="col-lg-6">
-
-              <div class="item">
-                <div class="row">
-                  <div class="col-lg-6 col-sm-6">
-                    <a href="more_details.html">
-                      <div class="item inner-item">
-                        <img src="{{ asset('images/popular-08.jpg')}}" alt="">
-                        <h4>Mini Craft<br><span>Legendary</span></h4>
+                <a href="{{ route('details2', ['id'=>Crypt::encrypt($game->game->id)])}}">
+                    <div class="item">
+                        <img src="{{asset('storage/images/games/'.$game->game->image)}}" alt="">
+                        <h4>{{ $game->game->name }}<br><span>{{ $game->game->produced_by }} </span></h4>
                         <ul>
-                          <li><i class="fa fa-star"></i> 4.8</li>
+                            <li><span class="badge bg-success text-light">PROMOCAO</span></li>
+                            @php
+                                $rechargesAvailable = \App\Models\Recharge::where(['user_id' => null, 'game_id' => $game->game_id, 'recharge_type_id'=>$game->id])->count();
+                            @endphp
+
+                            @if(!$rechargesAvailable)
+                                <span class="badge text-light bg-danger">Esgotada</span>
+                            @else
+                                <li><span class="badge text-light bg-info">Restam apenas {{ $rechargesAvailable }}</span></li>
+                            @endif
 
                         </ul>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-lg-6 col-sm-6">
-                    <a href="more_details.html">
-                      <div class="item">
-                        <img src="{{ asset('images/popular-07.jpg')}}" alt="">
-                        <h4>Eagles Fly<br><span>Matrix Games</span></h4>
-                        <ul>
-                          <li><i class="fa fa-star"></i> 4.8</li>
-
-                        </ul>
-                      </div></a>
-                  </div>
-                </div>
-              </div>
+                    </div>
+                </a>
             </div>
-            <div class="col-lg-3 col-sm-6">
-              <a href="more_details.html">
-                <div class="item">
-                  <img src="{{ asset('images/popular-06.jpg')}}" alt="">
-                  <h4>Warface<br><span>Max 3D</span></h4>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
 
-                  </ul>
-                </div>
-              </a>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <a href="more_details.html">
-                <div class="item">
-                  <img src="{{ asset('images/popular-08.jpg')}}" alt="">
-                  <h4>Warcraft<br><span>Legend</span></h4>
-                  <ul>
-                    <li><i class="fa fa-star"></i> 4.8</li>
+            @endforeach
 
-                  </ul>
-                </div></a>
-            </div>
-            <div class="col-lg-12">
+            {{-- <div class="col-lg-12">
               <div class="main-button">
                 <a href="browse.html">Ver mais recarga para paytion</a>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
+        @endif
         <!-- ***** Most Popular End ***** -->
         <!-- ***** Most Popular Start *****-->
-        <div class="most-popular">
+        {{-- <div class="most-popular">
           <div class="heading-section">
             <h4><em>JOGOS COM</em> RECARGA DIRETA</h4>
           </div>
@@ -236,11 +167,12 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
         <!-- ***** Most Popular End ***** -->
 
       </div>
     </div>
+  </div>
   </div>
 
   @include('client.layout.footer')

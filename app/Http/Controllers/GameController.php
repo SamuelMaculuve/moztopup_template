@@ -76,7 +76,7 @@ class GameController extends Controller
             $fileName   = $newFileName."_cover" . '.' . $image->getClientOriginalExtension();
 
             $img = Image::make($image->getRealPath());
-            $img->resize(120, 120, function ($constraint) {
+            $img->resize(200, 200, function ($constraint) {
                 $constraint->aspectRatio();
             });
 

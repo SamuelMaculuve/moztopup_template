@@ -49,7 +49,11 @@
                                                 class="text-heading font-semibold" href="#"><span class=" text-dark">{{ $recharge->game->name }}</span></a></td>
                                                 <td>{{ $recharge->created_at->format('d/m/Y') }}</td>
                                                 <td>{{ $recharge->rechargeType->title }}</td>
-                                                <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>Publicada</span></td>
+                                                @if($recharge->user_id != null)
+                                                    <td><span class="badge badge-lg badge-dot"><i class="bg-danger"></i>Comprada</span></td>
+                                                @else
+                                                    <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>Publicada</span></td>
+                                                @endif
 
                                             <td class="text-end"><a href="{{ route('edit.recharge', ['recharge'=> $recharge->id]) }}" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
                                         </tr>
