@@ -202,12 +202,12 @@ class RechargeTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($rchtype)
+    public function updateRecharge($id)
     {
-        dd($rchtype);
+        dd($id);
         $games = Game::all();
-        $user = Request::user();
-        return view('admin.pages.recargas.create-rechargeType', compact('user', 'games', 'rechargeType'));
+        // $user = $request->user();
+        // return view('admin.pages.recargas.update-rechargeType', compact('user', 'games', 'rechargeType'));
     }
 
     /**

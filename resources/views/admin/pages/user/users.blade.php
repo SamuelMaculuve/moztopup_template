@@ -179,25 +179,25 @@
                                                     <ul class="dropdown-menu">
                                                         <form action="{{ route('user.changepermission') }}" method="post">
                                                             @csrf
-                                                            <input type="hidden" name="permission" value="CLIENT">
+                                                            <input type="hidden" name="permission" value="client">
                                                             <input type="hidden" name="user" value="{{$user->id}}">
                                                             <li><button class="dropdown-item" type="submit">Remover Permissoes da Equipe</button></li>
                                                         </form>
                                                         <form action="{{ route('user.changepermission') }}" method="post">
                                                             @csrf
-                                                            <input type="hidden" name="permission" value="EDITOR">
+                                                            <input type="hidden" name="permission" value="editor">
                                                             <input type="hidden" name="user" value="{{$user->id}}">
                                                             <li><button type="submit" class="dropdown-item">Editor</button></li>
                                                         </form>
                                                         <form action="{{ route('user.changepermission') }}" method="post">
                                                             @csrf
-                                                            <input type="hidden" name="permission" value="ADMIN">
+                                                            <input type="hidden" name="permission" value="admin">
                                                             <input type="hidden" name="user" value="{{$user->id}}">
                                                             <li><button class="dropdown-item" type="submit">Administrador</button></li>
                                                         </form>
                                                         <form action="{{ route('user.changepermission') }}" method="post">
                                                             @csrf
-                                                            <input type="hidden" name="permission" value="BLOCKED">
+                                                            <input type="hidden" name="permission" value="blocked">
                                                             <input type="hidden" name="user" value="{{$user->id}}">
                                                             <li><button class="dropdown-item" type="submit">Restringir Acesso</button></li>
                                                         </form>

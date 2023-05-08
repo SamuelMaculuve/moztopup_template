@@ -16,12 +16,14 @@ class PaymentController extends Controller
     private $client_id;
     private $client_secret;
     private $wallet_mpesa;
+    private $wallet_emola;
 
     function __construct()
     {
         $this->client_id = config('app.client_id');
         $this->client_secret = config('app.client_secret');
         $this->wallet_mpesa = config('app.wallet_mpesa');
+        $this->wallet_emola = config('app.wallet_emola');
         ini_set('max_execution_time', 55);
     }
 
@@ -77,6 +79,7 @@ class PaymentController extends Controller
         $phone = $request->phone;
         $recharge_type = RechargeType::find($request->rechargeType)->first();
         $amount = (string) $recharge_type->price;
+        $method = $request->method;
 
         $token = $this->requestToken();
 
@@ -87,11 +90,11 @@ class PaymentController extends Controller
             return back()->withErrors('status',"Recargas Esgotadas");
         }
 
-        $res = $this->requestPayment($amount, $phone ,"recharge", $token);
-        
-        if($res->success)
+        $res = $this->requestPayment($amount, $phone ,"recharge", $token, $method);
+
+        if($res?->success)
         {
-            
+
             $recharge->user_id = $user->id;
 
             $recharge->save();
@@ -116,7 +119,7 @@ class PaymentController extends Controller
             "client_id"=> $this->client_id,
             "client_secret"=> $this->client_secret
         ];
-        
+
         $data = json_encode($data);
 
         curl_setopt_array($curl, array(
@@ -144,7 +147,7 @@ class PaymentController extends Controller
     }
 
 
-    function requestPayment($amount, $phone, $ref, $token)
+    function requestPayment($amount, $phone, $ref, $token, $method)
     {
         $data = [
             "client_id"=> $this->client_id,
@@ -153,12 +156,27 @@ class PaymentController extends Controller
             "reference"=> $ref
         ];
 
+        $endpoint=null;
+
+        if($method == "mpesa"){
+
+            $endpoint = "mpesa-payment/$this->wallet_mpesa";
+
+        }elseif ($method=="emola"){
+
+            $endpoint = "emola-payment/$this->wallet_emola";
+
+        }else{
+
+            return;
+        }
+
         $data = json_encode($data);
 
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://e2payments.explicador.co.mz/v1/c2b/mpesa-payment/'.$this->wallet_mpesa,
+            CURLOPT_URL => 'https://e2payments.explicador.co.mz/v1/c2b/'.$endpoint,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -173,9 +191,9 @@ class PaymentController extends Controller
               'Authorization: Bearer '. $token
             ),
           ));
-          
+
           $response = curl_exec($curl);
-          
+
           curl_close($curl);
 
           return json_decode($response);
@@ -184,7 +202,7 @@ class PaymentController extends Controller
 
 
     function purchasedRecharge(Request $request, $recharge)
-    {   
+    {
         $user = $request->user();
 
         $recharge = Recharge::where(['id'=>$recharge, 'user_id'=>$user->id])->first();

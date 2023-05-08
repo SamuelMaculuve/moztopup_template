@@ -1,9 +1,6 @@
 @extends('admin.layout.header')
 @section('content')
 
-<style>
-
-</style>
 
 <div class="d-flex flex-column flex-lg-row h-lg-full"  style="background-color: #f5f9fc;">
 
@@ -168,7 +165,7 @@
                   <div class="card-title d-flex align-items-center">
                     <h5 class="mb-0">Usuarios Activos</h5>
                     <div class="ms-auto text-end">
-                      <a href="{{ route('users') }}" class="text-sm font-semibold">Ver todos Usuarios
+                      <a href="{{ route('users') }}" class="text-sm font-semibold text-info">Ver todos Usuarios
 
                       </a>
                     </div>
@@ -184,6 +181,8 @@
                       </div>
                       <div class="flex-fill">
                         <h2 class="d-block h6 font-semibold mb-1"><span class="text-dark">{{ $recent->name }}</span></h2>
+                        <p class="d-block h6 font-semibold mb-1"><small class="text-dark">Email: {{ $recent->email }}</small></p>
+                        <p class="d-block h6 font-semibold mb-1"><small class="text-dark">Aderiu aos {{ $recent->created_at->format('d/m/Y') }}</small></p>
 
                       </div>
                       <div class="ms-auto text-end">

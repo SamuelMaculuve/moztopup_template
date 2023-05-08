@@ -13,6 +13,7 @@ class RechargeType extends Model
     protected $fillable = [
         'game_id',
         'user_id',
+        'title',
         'price',
         'description',
         'promotion',

@@ -60,6 +60,10 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
 
     Route::post('/user/change/permission', [DashboardController::class, 'changePermission'])->name('user.changepermission')->middleware('check-permission:admin');
 
+    Route::post('/delete/user', [DashboardController::class, 'deleteUser'])->name('user.delete')->middleware('check-permission:admin|editor');
+
+    Route::post('update/phone/user', [DashboardController::class, 'updatePhone'])->name('user.update.phone')->middleware('check-permission:admin|editor');
+
     Route::prefix('games')->group(function () {
         Route::post('/create', [GameController::class, 'store'])->name('new.game')->middleware('check-permission:admin|editor');
         Route::get('/edit/{game}', [GameController::class, 'edit'])->name('edit.game')->middleware('check-permission:admin|editor');
@@ -78,13 +82,13 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
         Route::get('/delete/{recharge}', [RechargeController::class, 'destroy'])->name('delete.recharge')->middleware('check-permission:admin|editor');
     });
 
-    Route::prefix('rechargeTypes')->group(function () {
+    Route::prefix('rechargetypes')->group(function () {
 
         Route::get('/list', [RechargeTypeController::class, 'index'])->name('list.recharge.type')->middleware('check-permission:admin|editor');
 
-        Route::post('/edit/recharge/type/{rechargeType)', [RechargeTypeController::class, 'edit'])->name('edit.recharge.type')->middleware('check-permission:admin|creator');
+        Route::post('/edit/recharge/type/', [RechargeTypeController::class, 'edit'])->name('edit.recharge.type')->middleware('check-permission:admin|creator');
 
-        Route::get('/update/recharge/type/{rchtype)', [RechargeTypeController::class, 'update'])->name('update.recharge.type')->middleware('check-permission:admin|creator');
+        Route::get('/update/recharge/type/{id)', [RechargeTypeController::class, 'updateRecharge'])->name('update.rechargetype')->middleware('check-permission:admin|creator');
 
         // Route::post('/create/recharge', [RechargeController::class, 'store'])->name('new.recharge')->middleware('check-permission:admin|editor');
 

@@ -51,7 +51,7 @@
                                                 <td>{{ $rechargeType->title }}</td>
                                                 <td><span class="badge badge-lg badge-dot"><i class="bg-success"></i>Publicada</span></td>
 
-                                            <td class="text-end"><a href="{{ route('update.recharge.type', ['rchtype'=> $rechargeType->id]) }}" class="btn btn-sm btn-neutral">Ver Detalhes</a></td>
+                                            {{-- <td class="text-end"><a href="{{ route('update.rechargetype', ['id'=> $rechargeType->id]) }}" class="btn btn-sm btn-neutral">Ver Detalhes</a></td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>

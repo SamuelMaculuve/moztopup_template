@@ -31,8 +31,7 @@ class AuthenticatedSessionController extends Controller
         $permissions = $request->user()->permissions;
         $permissions = explode(",", $permissions);
 
-        if(in_array('admin', $permissions) || in_array('viewer', $permissions) || in_array('creator', $permissions) || in_array('editor', $permissions) ||
-        in_array('deletor', $permissions))
+        if(in_array('admin', $permissions) || in_array('editor', $permissions))
         {
             return redirect()->intended(RouteServiceProvider::ADMIN);
         }

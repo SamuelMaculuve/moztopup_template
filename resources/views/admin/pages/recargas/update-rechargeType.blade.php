@@ -24,8 +24,9 @@
 
             <main class="py-6 bg-admin">
                 {{-- <img src="{{ asset('storage/images/games/'.$recharge->game->image)}}" width="250px" height="250px" alt="" srcset=""> --}}
-                <form action="{{ route('new.recharge.type') }}" enctype="multipart/form-data" method="POST">
-                @csrf
+
+                <form action="{{ route('edit.recharge.type', ['rechargeType'=> $rechargeType->id]) }}" enctype="multipart/form-data" method="POST">
+
 
               <div class="container-fluid max-w-screen-md vstack gap-5">
                 <div class="row gx-4">
@@ -34,7 +35,11 @@
                         <label class="form-label">Selecione o Jogo</label>
                         <select class="form-select" name="game_id">
                           @foreach ($games as $game)
-                                <option value="{{ $game->id }}" >{{ $game->name }}</option>
+                            @if ($game->id == $rechargeType->game_id)
+                                <option value="{{ $game->id }}" selected>{{ $game->name }}</option>
+                            @else
+                                <option value="{{ $game->id }}">{{ $game->name }}</option>
+                            @endif
                           @endforeach
                         </select>
                       </div>
@@ -43,13 +48,13 @@
                 <div>
                 <div>
                   <label class="form-label">Titulo do Tipo de Recarga</label>
-                  <input type="text" name="title" class="form-control" placeholder="Titulo do tipo de recarga">
+                  <input type="text" name="title" class="form-control" placeholder="Titulo do tipo de recarga" value="{{ $rechargeType->title }}">
                   <span class="d-block mt-2 text-sm text-muted">O codigo deve ser unico.</span>
                 </div>
                 <div>
                     <label class="form-label">Breve descricao (Opcional)</label>
 
-                    <textarea class="form-control" name="description" placeholder="Project description ..." rows="2"></textarea>
+                    <textarea class="form-control" name="description" value="{{ $rechargeType->description }}"  placeholder="Project description ..." rows="2"></textarea>
 
                 </div>
                 <hr class="my-0">
@@ -57,7 +62,7 @@
                 <div>
                     <label class="form-label">Preco das Recargas</label>
 
-                    <input type="number" name="price" class="form-control" placeholder="Preco das recargas">
+                    <input type="number" name="price" class="form-control"  value="{{ $rechargeType->price }}" placeholder="Preco das recargas">
 
                 </div>
 

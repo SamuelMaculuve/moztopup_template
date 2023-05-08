@@ -93,7 +93,7 @@ class DashboardController extends Controller
     function userProfile(Request $request)
     {
         $user = $request->user();
-        return view('admin.pages.user.profile', compact('user'));
+        return view('admin.pages.settings.profile', compact('user'));
     }
 
     function changePermission(Request $request)
@@ -107,6 +107,30 @@ class DashboardController extends Controller
         $user->save();
 
         Toastr::success('Permissao actualizada com sucesso para '. $user->name);
+
+        return back();
+    }
+
+    function deleteUser(Request $request)
+    {
+        $user = User::find($request->user);
+
+        $user->delete();
+
+        Toastr::success('Conta eliminada com sucesso');
+
+        return redirect(route('home'));
+    }
+
+    function updatePhone(Request $request)
+    {
+        $user = User::find($request->user()->id);
+
+        $user->phone = $request->phone;
+
+        $user->save();
+
+        Toastr::success('Telefone actualizado com sucesso');
 
         return back();
     }
